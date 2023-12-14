@@ -1,5 +1,5 @@
 import mysql.connector
-import dbconfig_template as cfg
+import dbconfig as cfg
 class BookDAO:
     connection=""
     cursor =''
