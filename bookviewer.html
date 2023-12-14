@@ -202,7 +202,7 @@
         //var car = {"reg":"12 D 1234","price":8000}
         console.log(JSON.stringify(book));
         $.ajax({
-            "url": "books/"+encodeURI(book.id),
+            "url": "/books/"+encodeURI(book.id),
             "method":"PUT",
             "data":JSON.stringify(book),
             "dataType": "JSON",
