@@ -387,11 +387,11 @@
         var form = document.getElementById('createUpdateForm');
         country = form.querySelector('input[name="country"]').value
         var res = getCountryjax(country);
-        var lat = res.lat;
+        var lat = res.Lat;
         console.log(res)
         var lon = res.lon;
         console.log(lat)
-        showMap(lat,lon)
+        
 
     }
 
