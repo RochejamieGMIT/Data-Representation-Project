@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, abort
-from CountryDAO import CountryDAO
+from CountryDAO import countryDAO
 
 app = Flask(__name__, static_url_path='', static_folder='.')
 
