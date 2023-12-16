@@ -62,6 +62,17 @@ class CountryDAO:
         returnvalue = self.convertToDictionary(result)
         self.closeAll()
         return returnvalue
+    
+    def findByCountry(self, country):
+        cursor = self.getcursor()
+        sql="select * from country where findByCountry = %s"
+        values = (country,)
+
+        cursor.execute(sql, values)
+        result = cursor.fetchone()
+        returnvalue = self.convertToDictionary(result)
+        self.closeAll()
+        return returnvalue
 
     def update(self, values):
         cursor = self.getcursor()

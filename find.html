@@ -26,7 +26,7 @@
             </a>
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="find.html">
+            <a class="nav-link" href="#">
               <img src="random.png" alt="Random" width="60px">   <!-- Both home button and logo point no where as the current paghe is the index/home page -->  
               </a>
           </li>
@@ -76,6 +76,7 @@
                     </tr>
                     
                 </table>
+                <div id="map" style ="width: 1000; height:1000"></div>
             </div>
             <div id='createUpdateForm' style="display: none">
                     <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Country</h2>
@@ -373,7 +374,20 @@
             }
         });
     }*/
-    getAllAjax();
+
+   
+     //https://developer.tomtom.com/
+     let center=[12.457777, 43.94236]
+    const map = tt.map({
+        key: "EAlZWjMGh8FMoHYOW04pVQkIoIFVkGly",
+        container: "map",
+        center: center,
+        zoom: 10
+
+    })
+    map.on("load",()=>{
+        new tt.marker().testlnglat(center).addTo(map)
+  
 
     
     </script>
