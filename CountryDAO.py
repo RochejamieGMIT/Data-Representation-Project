@@ -65,7 +65,7 @@ class CountryDAO:
     
     def findByCountry(self, country):
         cursor = self.getcursor()
-        sql="select * from country where findByCountry = %s"
+        sql="select * from country where country = %s"
         values = (country,)
 
         cursor.execute(sql, values)
