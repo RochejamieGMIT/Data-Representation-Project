@@ -376,8 +376,8 @@
     }*/
 
    
-     //https://developer.tomtom.com/
-     let center=[12.457777, 43.94236]
+   //https://developer.tomtom.com/
+   let center=[12.457777, 43.94236]
     const map = tt.map({
         key: "EAlZWjMGh8FMoHYOW04pVQkIoIFVkGly",
         container: "map",
@@ -387,8 +387,7 @@
     })
     map.on("load",()=>{
         new tt.marker().testlnglat(center).addTo(map)
-  
-
+    });
     
     </script>
   

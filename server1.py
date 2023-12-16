@@ -23,6 +23,12 @@ def findById(id):
 
     return jsonify(foundCountry)
 
+@app.route('/Countrys/<int:id>')
+def findByCountry(country):
+    foundCountry = countryDAO.findByCountry(country)
+
+    return jsonify(foundCountry)
+
 #curl  -i -H "Content-Type:application/json" -X POST -d "{\"title\":\"hello\",\"author\":\"someone\",\"price\":123}" http://127.0.0.1:5000/books
 @app.route('/Countrys', methods=['POST'])
 def create():
