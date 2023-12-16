@@ -374,7 +374,7 @@
             "success":function(result){
                 console.log(result);
                     addCountryToTable(result);
-                    return result
+                    showMap(result.Lat,result.lon)
                 
             },
             "error":function(xhr,status,error){
@@ -386,12 +386,9 @@
     function find(){
         var form = document.getElementById('createUpdateForm');
         country = form.querySelector('input[name="country"]').value
-        var res = getCountryjax(country);
-        var lat = res.Lat;
-        console.log(res)
-        var lon = res.lon;
-        console.log(lat)
-        showMap(lat,lon)
+        getCountryjax(country);
+       
+        
 
     }
 
