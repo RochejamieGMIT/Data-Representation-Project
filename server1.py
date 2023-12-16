@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, abort
-from CountryDAO import CountryDAO
+from CountryDAO import countryDAO
 
 app = Flask(__name__, static_url_path='', static_folder='.')
 
@@ -13,13 +13,13 @@ def index():
 @app.route('/Countrys')
 def getAll():
     #print("in getall")
-    results = CountryDAO.getAll()
+    results = countryDAO.getAll()
     return jsonify(results)
 
 #curl "http://127.0.0.1:5000/books/2"
 @app.route('/Countrys/<int:id>')
 def findById(id):
-    foundCountry = CountryDAO.findByID(id)
+    foundCountry = countryDAO.findByID(id)
 
     return jsonify(foundCountry)
 
@@ -44,14 +44,14 @@ def create():
         "lon": request.json['lon']
     }
     values =(Country['country'],Country['Land_area'],Country['capital'],Country['co2'],Country['C_Code'],Country['Life_ex'],Country['Min_Wage'],Country['auOff_languagethor'],Country['Population'],Country['Lat'],Country['lon'])
-    newId = CountryDAO.create(values)
+    newId = countryDAO.create(values)
     Country['id'] = newId
     return jsonify(Country)
 
 #curl  -i -H "Content-Type:application/json" -X PUT -d "{\"title\":\"hello\",\"author\":\"someone\",\"price\":123}" http://127.0.0.1:5000/books/1
 @app.route('/Countrys/<int:id>', methods=['PUT'])
 def update(id):
-    foundCountrys = CountryDAO.findByID(id)
+    foundCountrys = countryDAO.findByID(id)
     if not foundCountrys:
         abort(404)
     
@@ -92,7 +92,7 @@ def update(id):
     if 'lon' in reqJson:
         foundCountrys['lon'] = reqJson['lon']
     values = (foundCountrys['country'],foundCountrys['Land_area'],foundCountrys['capital'],foundCountrys['co2'],foundCountrys['C_Code'],foundCountrys['Life_ex'],foundCountrys['Min_Wage'],foundCountrys['Off_language'],foundCountrys['Population'],foundCountrys['Lat'],foundCountrys['lon'],foundCountrys['id'])
-    CountryDAO.update(values)
+    countryDAO.update(values)
     return jsonify(foundCountrys)
         
 
@@ -100,7 +100,7 @@ def update(id):
 
 @app.route('/Countrys/<int:id>' , methods=['DELETE'])
 def delete(id):
-    CountryDAO.delete(id)
+    countryDAO.delete(id)
     return jsonify({"done":True})
 
 
