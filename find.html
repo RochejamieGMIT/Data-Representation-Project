@@ -370,12 +370,31 @@
                 console.log(result);
                     addCountryToTable(result);
                     showMap(result.Lat,result.lon,result.Land_area)
+                    weatherajax(result.Lat,result.lon)
                 
             },
             "error":function(xhr,status,error){
                 console.log("error: "+status+" msg:"+error);
             }
         });
+    }
+
+    function weatherajax(lat,lon){
+        $.ajax({
+            "url": 'https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon+'&current=temperature_2m,weather_code&forecast_days=1',
+            "method":"GET",
+            "data":"",
+            "dataType": "JSON",
+            "success":function(result){
+                console.log(result);
+
+                
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+
     }
 
     function find(){
