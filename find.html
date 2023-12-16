@@ -374,7 +374,7 @@
             "success":function(result){
                 console.log(result);
                     addCountryToTable(result);
-                    showMap(result.Lat,result.lon)
+                    showMap(result.Lat,result.lon,result.Land_area)
                 
             },
             "error":function(xhr,status,error){
@@ -392,8 +392,21 @@
 
     }
 
-    function showMap(lat,lon){
+    function showMap(lat,lon,Land){
         //https://developer.tomtom.com/
+        if (Land < 100) {
+            zoom2 = 10
+            } else if (Land < 10000) {
+                zoom2 = 8;
+            } else if (Land < 25000) {
+                zoom2 = 7;
+            }else if (Land < 50000) {
+                zoom2 = 6;
+            }else if (Land < 100000) {
+                zoom2 = 4;
+            }else {
+                zoom2 = 3;
+            }
         let center=[lon, lat]
         console.log(lat + lon)
             const map = tt.map({
