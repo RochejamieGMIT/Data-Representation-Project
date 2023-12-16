@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style type ="text/css">
+    h1 {text-align: left;}
+    h2 {text-align: center;}
+    p {text-align: left;}
+
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+            <!-- navbar https://getbootstrap.com/docs/5.3/components/navs-tabs/ -->  
+         <!-- navbar includes the logo on the left and the nav buttons on the right -->  
+         <!-- I used images I created as the nav buttons on the left to indicate which page is active -->  
+         <!--Create a nav with a light theme, with a drop shadow and it is fixed to the top of the page-->
+     
+      <nav class="navbar navbar-light bg-light fixed-top shadow p-3 mb-5 " data-bs-theme="light">
+          <a class="navbar-brand" href="#" style="padding-left: 20px;">
+            <img src="Logo.png" alt="Globe" width="90px">
+            </a>
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <img src="random.png" alt="Random" width="60px">   <!-- Both home button and logo point no where as the current paghe is the index/home page -->  
+              </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="add.html">
+              <img src="add.png" alt="Add" width="60px">
+              </a>
+          </li>
+          </ul>
+      </nav>
+  </div>
+  
+  
+     <!--Back bg-secondary-subtle added to style the background with a loght grey -->
+  <div class="container-fluid bg-secondary-subtle">
+    <br/> <br/> <br/> <br/> <br/>  <br/> 
+    
+      <!-- Opening paragraph in a column on the left and the carousel of example gates on the right-->  
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1>County Info Api</h1>
+            <br/>  
+          </div>
+          <div class="col">
+          
+            <br/><br/> <br/> <br/> 
+            <h1>Country</h1>
+            <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
+            <div>
+                <table class="table" id="Country">
+                    <tr>
+                            <th>id</th>
+                            <th>Country</th>
+                            <th>Land area</th>
+                            <th>capital</th>
+                            <th>co2</th>
+                            <th>Currency Code</th>
+                            <th>Life Expectancy</th>
+                            <th>Min_Wage</th>
+                            <th>Off_language</th>
+                            <th>Population </th>
+                            <th>Lat</th>
+                            <th>Long</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div id='createUpdateForm' style="display: none">
+                    <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Country</h2>
+                    <input type="hidden" name="id"/>
+                    Title <input type="text" name="title" /><br/>
+                    Author <input type="text" name="author"/> <br/>
+                    Price <input type="number" name="price"/> <br/>
+                    <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
+                    <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+            </div>
+        </body>
+    
+      
+          </div>
+        </div>
+
+
+
+        <br/><br/> 
+   
+      </div>
+      <br/><br/><br/>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script>
+   
+   function showCreate(){
+        document.getElementById('showCreateButton').style.display="none"
+        document.getElementById('CountryTable').style.display="none"
+        document.getElementById('createUpdateForm').style.display="block"
+
+        document.getElementById('createLabel').style.display="inline"
+        document.getElementById('updateLabel').style.display="none"
+
+        document.getElementById('doCreateButton').style.display="block"
+        document.getElementById('doUpdateButton').style.display="none"
+
+    }
+    function showViewAll(){
+        document.getElementById('showCreateButton').style.display="block"
+        document.getElementById('CountryTable').style.display="block"
+        document.getElementById('createUpdateForm').style.display="none"
+    }
+    function showUpdate(buttonElement){
+        document.getElementById('showCreateButton').style.display="none"
+        document.getElementById('CountryTable').style.display="none"
+        document.getElementById('createUpdateForm').style.display="block"
+
+        document.getElementById('createLabel').style.display="none"
+        document.getElementById('updateLabel').style.display="inline"
+
+        document.getElementById('doCreateButton').style.display="none"
+        document.getElementById('doUpdateButton').style.display="block"
+
+
+        var rowElement = buttonElement.parentNode.parentNode
+        // these is a way of finding the closest <tr> which would safer, closest()
+        
+        var Country = getCountryFromRow(rowElement)
+        populateFormWithCountry(Country)
+    }
+    function doCreate(){
+        var form = document.getElementById('createUpdateForm')
+
+        var Country = {}
+       
+        Country.country = form.querySelector('input[name="country"]').value
+        Country.Land_area = form.querySelector('input[name="Land_area"]').value
+        Country.capital = form.querySelector('input[name="capital"]').value
+        Country.co2 = form.querySelector('input[name="co2"]').value
+        Country.C_Code = form.querySelector('input[name="C_Code"]').value
+        Country.Life_ex = form.querySelector('input[name="Life_ex"]').value
+        Country.Min_Wage = form.querySelector('input[name="Min_Wage"]').value
+        Country.Off_language = form.querySelector('input[name="Off_language"]').value
+        Country.Population = form.querySelector('input[name="Population"]').value
+        Country.Lat = form.querySelector('input[name="Lat"]').value
+        Country.lon = form.querySelector('input[name="lon"]').value
+        console.log(JSON.stringify(Country))
+        createCountryAjax(Country)
+        
+        
+    }
+    function doUpdate(){
+        var Country = getCountryFromForm();
+        var rowElement = document.getElementById(Country.id);
+        updateCountryAjax(Country);
+        setCountryInRow(rowElement,Country);
+       
+        clearForm();
+        showViewAll();
+    }
+    function doDelete(r){
+        var CountryElement = document.getElementById('CountryTable');
+        var rowElement = r.parentNode.parentNode;
+        var index = rowElement.rowIndex;
+        deleteCountryAjax(rowElement.getAttribute("id"));
+        tableElement.deleteRow(index);
+    }
+    function addCountryToTable(Country){
+        var tableElement = document.getElementById('CountryTable')
+        var rowElement = tableElement.insertRow(-1)
+        rowElement.setAttribute('id',Country.id)
+        var cell1 = rowElement.insertCell(0);
+        cell1.innerHTML = Country.id
+        var cell2 = rowElement.insertCell(1);
+        cell2.innerHTML = Country.country
+        var cell3 = rowElement.insertCell(2);
+        cell3.innerHTML = Country.Land_area
+        var cell4 = rowElement.insertCell(3);
+        cell4.innerHTML = Country.capital
+        var cell5 = rowElement.insertCell(4);
+        cell5.innerHTML = Country.co2
+        var cell6 = rowElement.insertCell(5);
+        cell6.innerHTML = Country.C_Code
+        var cell7 = rowElement.insertCell(6);
+        cell7.innerHTML = Country.Life_ex
+        var cell8 = rowElement.insertCell(7);
+        cell8.innerHTML = Country.Min_Wage
+        var cell9 = rowElement.insertCell(8);
+        cell9.innerHTML = Country.Off_language
+        var cell10 = rowElement.insertCell(9);
+        cell10.innerHTML = Country.Population
+        var cel11 = rowElement.insertCell(10);
+        cell11.innerHTML = Country.Lat
+        var cell12 = rowElement.insertCell(11);
+        cell12.innerHTML = Country.lon
+    
+        var cell13 = rowElement.insertCell(12);
+        cell13.innerHTML = '<button onclick="showUpdate(this)">Update</button>'
+        var cell14 = rowElement.insertCell(13);
+        cell14.innerHTML = '<button onclick=doDelete(this)>delete</button>'
+
+    }
+
+    function clearForm(){
+        var form = document.getElementById('createUpdateForm')
+
+        form.querySelector('input[name="country"]').value
+        form.querySelector('input[name="Land_area"]').value
+        form.querySelector('input[name="capital"]').value
+        form.querySelector('input[name="co2"]').value
+        form.querySelector('input[name="C_Code"]').value
+        form.querySelector('input[name="Life_ex"]').value
+        form.querySelector('input[name="Min_Wage"]').value
+        form.querySelector('input[name="Off_language"]').value
+        form.querySelector('input[name="Population"]').value
+        form.querySelector('input[name="Lat"]').value
+        form.querySelector('input[name="lon"]').value
+    }
+    function getCountryFromRow(rowElement){
+        var Country ={}
+        Country.id  = rowElement.getAttribute('id')
+        Country.country = rowElement.cells[1].firstChild.textContent
+        Country.Land_area = rowElement.cells[2].firstChild.textContent
+        Country.capital = rowElement.cells[3].firstChild.textContent
+        Country.co2 = rowElement.cells[4].firstChild.textContent
+        boCountryok.Life_ex = rowElement.cells[5].firstChild.textContent
+        Country.Min_Wage = rowElement.cells[6].firstChild.textContent
+        Country.Off_language = rowElement.cells[7].firstChild.textContent
+        Country.Population = rowElement.cells[8].firstChild.textContent
+        Country.Lat = rowElement.cells[9].firstChild.textContent
+        Country.lon = rowElement.cells[10].firstChild.textContent
+        return Country
+    }
+    function setCountryInRow(rowElement, Country){
+        rowElement.cells[0].firstChild.textContent= Country.id  
+        rowElement.cells[1].firstChild.textContent= Country.country 
+        rowElement.cells[2].firstChild.textContent= Country.Land_area
+        rowElement.cells[3].firstChild.textContent= Country.co2
+        rowElement.cells[4].firstChild.textContent= Country.C_Code
+        rowElement.cells[5].firstChild.textContent= Country.Life_ex
+        rowElement.cells[6].firstChild.textContent= Country.Min_Wage
+        rowElement.cells[7].firstChild.textContent= Country.Off_language
+        rowElement.cells[8].firstChild.textContent= Country.Population
+        rowElement.cells[9].firstChild.textContent= Country.Lat
+        rowElement.cells[10].firstChild.textContent= Country.Lat
+
+    }
+    function populateFormWithCountry(Country){
+        var form = document.getElementById('createUpdateForm')
+        form.querySelector('input[name="id"]').disabled = true
+
+        form.querySelector('input[name="country"]').value
+        form.querySelector('input[name="Land_area"]').value
+        form.querySelector('input[name="capital"]').value
+        form.querySelector('input[name="co2"]').value
+        form.querySelector('input[name="C_Code"]').value
+        form.querySelector('input[name="Life_ex"]').value
+        form.querySelector('input[name="Min_Wage"]').value
+        form.querySelector('input[name="Off_language"]').value
+        form.querySelector('input[name="Population"]').value
+        form.querySelector('input[name="Lat"]').value
+        form.querySelector('input[name="lon"]').value
+        return Country
+    }
+    function getCountryFromForm(){
+        var form = document.getElementById('createUpdateForm')
+        var Country = {}
+        Country.id = form.querySelector('input[name="id"]').value
+        Country.country = form.querySelector('input[name="country"]').value
+        Country.author = form.querySelector('input[name="author"]').value
+        Country.price = parseInt(form.querySelector('input[name="price"]').value,10)
+        console.log(JSON.stringify(Country))
+        return Country
+    }
+    function getAllAjax(){
+        $.ajax({
+            "url": "/Countrys",
+            "method":"GET",
+            "data":"",
+            "dataType": "JSON",
+            "success":function(result){
+                //console.log(result);
+                for (Country of result){
+                    addCountryToTable(Country);
+                }
+                
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+
+    }
+    function createCountryAjax(Country){
+        //var car = {"reg":"12 D 1234","make":"Fiat","model":"Punto","price":3000}
+        console.log(JSON.stringify(Country));
+        $.ajax({
+            "url": "/Countrys",
+            "method":"POST",
+            "data":JSON.stringify(Country),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                //console.log(result);
+                Country.id = result.id
+                addCountryToTable(Country)
+                clearForm()
+                showViewAll()
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+    function updateCountryAjax(Country){
+        //var car = {"reg":"12 D 1234","price":8000}
+        console.log(JSON.stringify(Country));
+        $.ajax({
+            "url": "/Countrys/"+encodeURI(Country.id),
+            "method":"PUT",
+            "data":JSON.stringify(Country),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+               // console.log(result);
+                  
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+    function deleteCountryAjax(id){
+        
+        //console.log(JSON.stringify('deleting '+id));
+        $.ajax({
+            "url": "/Countrys/"+encodeURI(id),
+            "method":"DELETE",
+            "data":"",
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                //console.log(result);
+                  
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+    getAllAjax();
+
+    
+    </script>
+  
+  </body>
+</html>

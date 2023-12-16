@@ -30,7 +30,7 @@ class BookDAO:
          
     def create(self, values):
         cursor = self.getcursor()
-        sql="insert into book (title,author, price) values (%s,%s,%s)"
+        sql="insert into Country (country,Land_area, capital,co2,C_Code,Life_ex,Min_Wage,Off_language,Population,Lat,lon) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         cursor.execute(sql, values)
 
         self.connection.commit()
@@ -40,7 +40,7 @@ class BookDAO:
 
     def getAll(self):
         cursor = self.getcursor()
-        sql="select * from book"
+        sql="select * from Country"
         cursor.execute(sql)
         results = cursor.fetchall()
         returnArray = []
@@ -54,7 +54,7 @@ class BookDAO:
 
     def findByID(self, id):
         cursor = self.getcursor()
-        sql="select * from book where id = %s"
+        sql="select * from Country where id = %s"
         values = (id,)
 
         cursor.execute(sql, values)
@@ -65,14 +65,14 @@ class BookDAO:
 
     def update(self, values):
         cursor = self.getcursor()
-        sql="update book set title= %s,author=%s, price=%s  where id = %s"
+        sql="update Country set country=%s,Land_area=%s, capital=%s,co2=%s,C_Code=%s,Life_ex=%sMin_Wage=%s,Off_language=%s,Population=%s,Lat=%s,lon=%s  where id = %s"
         cursor.execute(sql, values)
         self.connection.commit()
         self.closeAll()
         
     def delete(self, id):
         cursor = self.getcursor()
-        sql="delete from book where id = %s"
+        sql="delete from Country where id = %s"
         values = (id,)
 
         cursor.execute(sql, values)
@@ -83,7 +83,7 @@ class BookDAO:
         print("delete done")
 
     def convertToDictionary(self, result):
-        colnames=['id','title','author', "price"]
+        colnames=["id","country","Land_area", "capital","co2","C_Code","Life_ex","Min_Wage","Off_language","Population","Lat","lon"]
         item = {}
         
         if result:

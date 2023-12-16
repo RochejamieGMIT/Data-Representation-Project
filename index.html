@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style type ="text/css">
+    h1 {text-align: left;}
+    h2 {text-align: center;}
+    p {text-align: left;}
+
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+            <!-- navbar https://getbootstrap.com/docs/5.3/components/navs-tabs/ -->  
+         <!-- navbar includes the logo on the left and the nav buttons on the right -->  
+         <!-- I used images I created as the nav buttons on the left to indicate which page is active -->  
+         <!--Create a nav with a light theme, with a drop shadow and it is fixed to the top of the page-->
+     
+      <nav class="navbar navbar-light bg-light fixed-top shadow p-3 mb-5 " data-bs-theme="light">
+          <a class="navbar-brand" href="#" style="padding-left: 20px;">
+            <img src="Logo.png" alt="Globe" width="90px">
+            </a>
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <img src="random.png" alt="Random" width="60px">   <!-- Both home button and logo point no where as the current paghe is the index/home page -->  
+              </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="add.html">
+              <img src="add.png" alt="Add" width="60px">
+              </a>
+          </li>
+          </ul>
+      </nav>
+  </div>
+  
+  
+     <!--Back bg-secondary-subtle added to style the background with a loght grey -->
+  <div class="container-fluid bg-secondary-subtle">
+    <br/> <br/> <br/> <br/> <br/>  <br/> 
+    
+      <!-- Opening paragraph in a column on the left and the carousel of example gates on the right-->  
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1>County Info Api</h1>
+            <br/>  
+          </div>
+          <div class="col">
+          
+            <br/><br/> <br/> <br/> 
+
+            <!--carousel  https://getbootstrap.com/docs/5.3/components/carousel/#autoplaying-carousels 
+          https://stackoverflow.com/questions/19582340/make-bootstraps-carousel-both-center-and-responsive
+            Carousel of the paints to show carousel usgae for brief interval set to 2000 to shorten time and mx-auto used to center horizontally 
+              Setting data-bs-ride="carousel to ensure autoplay, having only one "carousel-item active" to ensure that when the carousel opens only
+              one image is trying to open, more than on active causes performance issues with the carousel
+        
+          -->  
+    
+      
+          </div>
+        </div>
+
+
+
+        <br/><br/> 
+   
+      </div>
+      <br/><br/><br/>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script>
+   
+    
+  let NLName ="";
+  let NLemail = "";
+
+//https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_ref_js_modal_show_hide&stacked=h
+//I could not get the modal to open with java script so I had to use Jquery click function
+//email validation
+//https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+// Function to display the modal
+//J query function activates when sub is clicked
+// the function first stores the name and email 
+//if either is empty the falied modal is shown to the user
+// if they're not empty thye go to test the email
+//if the email is not in the correct format the fail modal is also shown 
+//finally if a name and email are supplied, and the email is valied the thanks notice is 
+//displayed and a short test email is actually sent to the email address added via the 
+//var nodemailer = require('nodemailer'); module 
+// when either modal is closed the clearForm() function is called to clear the form
+$("#sub").click(function(){
+  NLName = document.getElementById("name").value;
+  NLemail = document.getElementById("email").value;
+  if (NLName =="" || NLemail==""){
+    $('#failNL').modal('show')
+  }
+  else{
+    var re = /\S+@\S+\.\S+/;
+    let Temail = re.test(NLemail);
+    if (!Temail){ 
+      $('#failNL').modal('show')
+    }else{
+      $('#NLSignUp').modal('show');
+    }
+    
+
+  }
+  
+});
+
+
+     // form clears when closing the modal as when clearing the form on submitting the 
+    // form, the email function was breaking
+    //https://stackoverflow.com/questions/3786694/how-to-reset-clear-form-through-javascript
+    function clearForm() {
+    document.getElementById("emailForm").reset();
+    }
+    
+    </script>
+  
+  </body>
+</html>
