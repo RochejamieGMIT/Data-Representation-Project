@@ -365,7 +365,7 @@
         });
     }*/
 
-    function getAllAjax(country){
+    function getCountryjax(country){
         $.ajax({
             "url": "/Countrys/<country>",
             "method":"GET",
@@ -373,9 +373,8 @@
             "dataType": "JSON",
             "success":function(result){
                 console.log(result);
-                for (Country of result){
                     addCountryToTable(Country);
-                }
+                
                 
             },
             "error":function(xhr,status,error){
@@ -387,7 +386,7 @@
     function find(){
         var form = document.getElementById('createUpdateForm')
         country = form.querySelector('input[name="country"]').value
-        getAllAjax(country)
+        getCountryjax(country)
         showMap()
 
     }
