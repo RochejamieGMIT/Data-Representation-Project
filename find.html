@@ -374,7 +374,7 @@
             "success":function(result){
                 console.log(result);
                     addCountryToTable(result);
-                
+                    return result
                 
             },
             "error":function(xhr,status,error){
@@ -386,14 +386,16 @@
     function find(){
         var form = document.getElementById('createUpdateForm')
         country = form.querySelector('input[name="country"]').value
-        getCountryjax(country)
+        var res = getCountryjax(country)
+        var lat = res.lat
+        var lon = res.lon
         showMap()
 
     }
 
-    function showMap(){
+    function showMap(lat,lon){
         //https://developer.tomtom.com/
-        let center=[12.457777, 43.94236]
+        let center=[lon, lat]
             const map = tt.map({
                 key: "EAlZWjMGh8FMoHYOW04pVQkIoIFVkGly",
                 container: "map",
