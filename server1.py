@@ -23,7 +23,7 @@ def findById(id):
 
     return jsonify(foundCountry)
 
-@app.route('/Countrys/<int:id>')
+@app.route('/Countrys/<str:country>')
 def findByCountry(country):
     foundCountry = countryDAO.findByCountry(country)
 
