@@ -80,21 +80,11 @@
                
             </div>
             <div id="map" style ="width: 1000; height:1000"></div>
-            <div id='createUpdateForm' style="display: none">
+            <div id='createUpdateForm' style="display: block">
                     <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Country</h2>
-                    <input type="hidden" name="id"/>
+                    <input type="text" name="id"/>
                     Country <input type="text" name="country" /><br/>
-                    Land_area <input type="text" name="Land_area"/> <br/>
-                    capital <input type="number" name="capital"/> <br/>
-                    co2 <input type="text" name="co2" /><br/>
-                    C_Code <input type="text" name="C_Code"/> <br/>
-                    Min_Wage <input type="number" name="Min_Wage"/> <br/>
-                    Off_language <input type="text" name="Off_language" /><br/>
-                    Population <input type="text" name="Population"/> <br/>
-                    Lat <input type="number" name="Lat"/> <br/>
-                    lon <input type="number" name="lon"/> <br/>
-                    <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
-                    <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+                    <div> <button id="findButton" onclick="find()">Find</button></div>
             </div>
         </body>
     
@@ -378,7 +368,6 @@
     }*/
 
     function find(){
-
         showMap()
 
     }
