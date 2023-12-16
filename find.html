@@ -365,7 +365,29 @@
         });
     }*/
 
+    function getAllAjax(country){
+        $.ajax({
+            "url": "/Countrys/<country>",
+            "method":"GET",
+            "data":"",
+            "dataType": "JSON",
+            "success":function(result){
+                console.log(result);
+                for (Country of result){
+                    addCountryToTable(Country);
+                }
+                
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+
     function find(){
+        var form = document.getElementById('createUpdateForm')
+        country = form.querySelector('input[name="country"]').value
+        getAllAjax(country)
         showMap()
 
     }
