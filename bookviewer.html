@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> view Books</title>
+        <title> view countrys</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -9,7 +9,7 @@
         <h1>Country</h1>
         <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
         <div>
-            <table class="table" id="bookTable">
+            <table class="table" id="countryTable">
                 <tr>
                         <th>id</th>
                         <th>Title</th>
@@ -24,7 +24,7 @@
             </table>
         </div>
         <div id='createUpdateForm' style="display: none">
-                <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Book</h2>
+                <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> country</h2>
                 <input type="hidden" name="id"/>
                 Title <input type="text" name="title" /><br/>
                 Author <input type="text" name="author"/> <br/>
@@ -36,7 +36,7 @@
     <script>
     function showCreate(){
         document.getElementById('showCreateButton').style.display="none"
-        document.getElementById('bookTable').style.display="none"
+        document.getElementById('countryTable').style.display="none"
         document.getElementById('createUpdateForm').style.display="block"
 
         document.getElementById('createLabel').style.display="inline"
@@ -48,12 +48,12 @@
     }
     function showViewAll(){
         document.getElementById('showCreateButton').style.display="block"
-        document.getElementById('bookTable').style.display="block"
+        document.getElementById('countryTable').style.display="block"
         document.getElementById('createUpdateForm').style.display="none"
     }
     function showUpdate(buttonElement){
         document.getElementById('showCreateButton').style.display="none"
-        document.getElementById('bookTable').style.display="none"
+        document.getElementById('countryTable').style.display="none"
         document.getElementById('createUpdateForm').style.display="block"
 
         document.getElementById('createLabel').style.display="none"
@@ -66,50 +66,50 @@
         var rowElement = buttonElement.parentNode.parentNode
         // these is a way of finding the closest <tr> which would safer, closest()
         
-        var book = getBookFromRow(rowElement)
-        populateFormWithBook(book)
+        var country = getcountryFromRow(rowElement)
+        populateFormWithcountry(country)
     }
     function doCreate(){
         var form = document.getElementById('createUpdateForm')
 
-        var book = {}
+        var country = {}
        
-        book.title = form.querySelector('input[name="title"]').value
-        book.author = form.querySelector('input[name="author"]').value
-        book.price = form.querySelector('input[name="price"]').value
-        console.log(JSON.stringify(book))
-        createBookAjax(book)
+        country.title = form.querySelector('input[name="title"]').value
+        country.author = form.querySelector('input[name="author"]').value
+        country.price = form.querySelector('input[name="price"]').value
+        console.log(JSON.stringify(country))
+        createcountryAjax(country)
         
         
     }
     function doUpdate(){
-        var book = getBookFromForm();
-        var rowElement = document.getElementById(book.id);
-        updateBookAjax(book);
-        setBookInRow(rowElement,book);
+        var country = getcountryFromForm();
+        var rowElement = document.getElementById(country.id);
+        updatecountryAjax(country);
+        setcountryInRow(rowElement,country);
        
         clearForm();
         showViewAll();
     }
     function doDelete(r){
-        var tableElement = document.getElementById('bookTable');
+        var tableElement = document.getElementById('countryTable');
         var rowElement = r.parentNode.parentNode;
         var index = rowElement.rowIndex;
-        deleteBookAjax(rowElement.getAttribute("id"));
+        deletecountryAjax(rowElement.getAttribute("id"));
         tableElement.deleteRow(index);
     }
-    function addBookToTable(book){
-        var tableElement = document.getElementById('bookTable')
+    function addcountryToTable(country){
+        var tableElement = document.getElementById('countryTable')
         var rowElement = tableElement.insertRow(-1)
-        rowElement.setAttribute('id',book.id)
+        rowElement.setAttribute('id',country.id)
         var cell1 = rowElement.insertCell(0);
-        cell1.innerHTML = book.id
+        cell1.innerHTML = country.id
         var cell2 = rowElement.insertCell(1);
-        cell2.innerHTML = book.title
+        cell2.innerHTML = country.title
         var cell3 = rowElement.insertCell(2);
-        cell3.innerHTML = book.author
+        cell3.innerHTML = country.author
         var cell4 = rowElement.insertCell(3);
-        cell4.innerHTML = book.price
+        cell4.innerHTML = country.price
         var cell5 = rowElement.insertCell(4);
         cell5.innerHTML = '<button onclick="showUpdate(this)">Update</button>'
         var cell6 = rowElement.insertCell(5);
@@ -124,50 +124,50 @@
         form.querySelector('input[name="author"]').value=''
         form.querySelector('input[name="price"]').value=''
     }
-    function getBookFromRow(rowElement){
+    function getcountryFromRow(rowElement){
         var car ={}
-        book.id  = rowElement.getAttribute('id')
-        book.title = rowElement.cells[1].firstChild.textContent
-        book.author = rowElement.cells[2].firstChild.textContent
-        book.price = parseInt(rowElement.cells[3].firstChild.textContent,10)
-        return book
+        country.id  = rowElement.getAttribute('id')
+        country.title = rowElement.cells[1].firstChild.textContent
+        country.author = rowElement.cells[2].firstChild.textContent
+        country.price = parseInt(rowElement.cells[3].firstChild.textContent,10)
+        return country
     }
-    function setBookInRow(rowElement, book){
-        rowElement.cells[0].firstChild.textContent= book.id  
-        rowElement.cells[1].firstChild.textContent= book.title 
-        rowElement.cells[2].firstChild.textContent= book.author
-        rowElement.cells[3].firstChild.textContent= book.price
+    function setcountryInRow(rowElement, country){
+        rowElement.cells[0].firstChild.textContent= country.id  
+        rowElement.cells[1].firstChild.textContent= country.title 
+        rowElement.cells[2].firstChild.textContent= country.author
+        rowElement.cells[3].firstChild.textContent= country.price
     }
-    function populateFormWithBook(book){
+    function populateFormWithcountry(country){
         var form = document.getElementById('createUpdateForm')
         form.querySelector('input[name="id"]').disabled = true
 
-        form.querySelector('input[name="id"]').value  = book.id
-        form.querySelector('input[name="title"]').value= book.title
-        form.querySelector('input[name="author"]').value= book.author
-        form.querySelector('input[name="price"]').value= book.price
-        return book
+        form.querySelector('input[name="id"]').value  = country.id
+        form.querySelector('input[name="title"]').value= country.title
+        form.querySelector('input[name="author"]').value= country.author
+        form.querySelector('input[name="price"]').value= country.price
+        return country
     }
-    function getBookFromForm(){
+    function getcountryFromForm(){
         var form = document.getElementById('createUpdateForm')
-        var book = {}
-        book.id = form.querySelector('input[name="id"]').value
-        book.title = form.querySelector('input[name="title"]').value
-        book.author = form.querySelector('input[name="author"]').value
-        book.price = parseInt(form.querySelector('input[name="price"]').value,10)
-        console.log(JSON.stringify(book))
-        return book
+        var country = {}
+        country.id = form.querySelector('input[name="id"]').value
+        country.title = form.querySelector('input[name="title"]').value
+        country.author = form.querySelector('input[name="author"]').value
+        country.price = parseInt(form.querySelector('input[name="price"]').value,10)
+        console.log(JSON.stringify(country))
+        return country
     }
     function getAllAjax(){
         $.ajax({
-            "url": "/books",
+            "url": "/countrys",
             "method":"GET",
             "data":"",
             "dataType": "JSON",
             "success":function(result){
                 //console.log(result);
-                for (book of result){
-                    addBookToTable(book);
+                for (country of result){
+                    addcountryToTable(country);
                 }
                 
             },
@@ -177,19 +177,19 @@
         });
 
     }
-    function createBookAjax(book){
+    function createcountryAjax(country){
         //var car = {"reg":"12 D 1234","make":"Fiat","model":"Punto","price":3000}
-        console.log(JSON.stringify(book));
+        console.log(JSON.stringify(country));
         $.ajax({
-            "url": "/books",
+            "url": "/countrys",
             "method":"POST",
-            "data":JSON.stringify(book),
+            "data":JSON.stringify(country),
             "dataType": "JSON",
             contentType: "application/json; charset=utf-8",
             "success":function(result){
                 //console.log(result);
-                book.id = result.id
-                addBookToTable(book)
+                country.id = result.id
+                addcountryToTable(country)
                 clearForm()
                 showViewAll()
             },
@@ -198,13 +198,13 @@
             }
         });
     }
-    function updateBookAjax(book){
+    function updatecountryAjax(country){
         //var car = {"reg":"12 D 1234","price":8000}
-        console.log(JSON.stringify(book));
+        console.log(JSON.stringify(country));
         $.ajax({
-            "url": "/books/"+encodeURI(book.id),
+            "url": "/countrys/"+encodeURI(country.id),
             "method":"PUT",
-            "data":JSON.stringify(book),
+            "data":JSON.stringify(country),
             "dataType": "JSON",
             contentType: "application/json; charset=utf-8",
             "success":function(result){
@@ -216,11 +216,11 @@
             }
         });
     }
-    function deleteBookAjax(id){
+    function deletecountryAjax(id){
         
         //console.log(JSON.stringify('deleting '+id));
         $.ajax({
-            "url": "/books/"+encodeURI(id),
+            "url": "/countrys/"+encodeURI(id),
             "method":"DELETE",
             "data":"",
             "dataType": "JSON",

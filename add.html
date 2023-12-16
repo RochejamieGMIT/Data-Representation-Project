@@ -22,7 +22,7 @@
      
       <nav class="navbar navbar-light bg-light fixed-top shadow p-3 mb-5 " data-bs-theme="light">
           <a class="navbar-brand" href="#" style="padding-left: 20px;">
-            <img src="Logo.png" alt="Globe" width="90px">
+            <img src="logo.png" alt="Globe" width="90px">
             </a>
         <ul class="nav">
           <li class="nav-item">
@@ -80,9 +80,16 @@
             <div id='createUpdateForm' style="display: none">
                     <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Country</h2>
                     <input type="hidden" name="id"/>
-                    Title <input type="text" name="title" /><br/>
-                    Author <input type="text" name="author"/> <br/>
-                    Price <input type="number" name="price"/> <br/>
+                    Country <input type="text" name="title" /><br/>
+                    Land_area <input type="text" name="Land_area"/> <br/>
+                    capital <input type="number" name="capital"/> <br/>
+                    co2 <input type="text" name="co2" /><br/>
+                    C_Code <input type="text" name="C_Code"/> <br/>
+                    Min_Wage <input type="number" name="Min_Wage"/> <br/>
+                    Off_language <input type="text" name="Off_language" /><br/>
+                    Population <input type="text" name="Population"/> <br/>
+                    Lat <input type="number" name="Lat"/> <br/>
+                    lon <input type="number" name="lon"/> <br/>
                     <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
                     <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
             </div>
@@ -277,8 +284,16 @@
         var Country = {}
         Country.id = form.querySelector('input[name="id"]').value
         Country.country = form.querySelector('input[name="country"]').value
-        Country.author = form.querySelector('input[name="author"]').value
-        Country.price = parseInt(form.querySelector('input[name="price"]').value,10)
+        Country.Land_area = parseInt(form.querySelector('input[name="Land_area"]').value,10)
+        Country.capital = form.querySelector('input[name="capital"]').value
+        Country.co2 = form.querySelector('input[name="co2"]').value
+        Country.C_Code = form.querySelector('input[name="C_Code"]').value
+        Country.Life_ex = parseFloat(form.querySelector('input[name="Life_ex"]').value,10)
+        Country.Min_Wage = form.querySelector('input[name="Min_Wage"]').value
+        Country.Off_language = form.querySelector('input[name="Off_language"]').value
+        Country.Population = form.querySelector('input[name="Population"]').value
+        Country.Lat = parseFloat(form.querySelector('input[name="Lat"]').value,10)
+        Country.lon = parseFloat(form.querySelector('input[name="lon"]').value,10)
         console.log(JSON.stringify(Country))
         return Country
     }

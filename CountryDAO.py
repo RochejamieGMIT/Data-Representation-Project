@@ -1,6 +1,6 @@
 import mysql.connector
 import dbconfig as cfg
-class BookDAO:
+class CountryDAO:
     connection=""
     cursor =''
     host=       ''
@@ -30,7 +30,7 @@ class BookDAO:
          
     def create(self, values):
         cursor = self.getcursor()
-        sql="insert into Country (country,Land_area, capital,co2,C_Code,Life_ex,Min_Wage,Off_language,Population,Lat,lon) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        sql="insert into country (country,Land_area, capital,co2,C_Code,Life_ex,Min_Wage,Off_language,Population,Lat,lon) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         cursor.execute(sql, values)
 
         self.connection.commit()
@@ -40,7 +40,7 @@ class BookDAO:
 
     def getAll(self):
         cursor = self.getcursor()
-        sql="select * from Country"
+        sql="select * from country"
         cursor.execute(sql)
         results = cursor.fetchall()
         returnArray = []
@@ -54,7 +54,7 @@ class BookDAO:
 
     def findByID(self, id):
         cursor = self.getcursor()
-        sql="select * from Country where id = %s"
+        sql="select * from country where id = %s"
         values = (id,)
 
         cursor.execute(sql, values)
@@ -65,14 +65,14 @@ class BookDAO:
 
     def update(self, values):
         cursor = self.getcursor()
-        sql="update Country set country=%s,Land_area=%s, capital=%s,co2=%s,C_Code=%s,Life_ex=%sMin_Wage=%s,Off_language=%s,Population=%s,Lat=%s,lon=%s  where id = %s"
+        sql="update country set country=%s,Land_area=%s, capital=%s,co2=%s,C_Code=%s,Life_ex=%sMin_Wage=%s,Off_language=%s,Population=%s,Lat=%s,lon=%s  where id = %s"
         cursor.execute(sql, values)
         self.connection.commit()
         self.closeAll()
         
     def delete(self, id):
         cursor = self.getcursor()
-        sql="delete from Country where id = %s"
+        sql="delete from country where id = %s"
         values = (id,)
 
         cursor.execute(sql, values)
@@ -93,4 +93,4 @@ class BookDAO:
         
         return item
         
-bookDAO = BookDAO()
+countryDAO = CountryDAO()
