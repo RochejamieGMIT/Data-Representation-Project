@@ -398,6 +398,8 @@
                 console.log(result);
                 document.getElementById('WeatherTable').style.display="Block"
                 var tableElement = document.getElementById('CountryTable')
+                var rowElement = tableElement.insertRow(0)
+                rowElement.setAttribute('Weather',result.current.temperature_2m)
                 var cell1 = rowElement.insertCell(0);
                 cell1.innerHTML = result.current.temperature_2m
                 var cell1 = rowElement.insertCell(0);
