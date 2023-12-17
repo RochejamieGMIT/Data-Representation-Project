@@ -26,6 +26,9 @@
             <img src="logo.png" alt="Globe" width="90px">
             </a>
         <ul class="nav">
+            <li class="nav-item">
+                <h1>Random Country Page</h1>
+               </li>
           <li class="nav-item">
             <a class="nav-link" href="find.html">
               <img src="find.png" alt="Find" width="60px">   <!-- Both home button and logo point no where as the current paghe is the index/home page -->  
@@ -62,9 +65,9 @@
             <br/><br/> <br/> <br/> 
             <h1>Search For a Counrty</h1>
             <div id='createUpdateForm' style="display: block">
-                <h2><span id="createLabel"></span> <span id="updateLabel"></span> </h2>
-                Country <input type="text" name="country" /><br/>
-                <div> <button id="findButton" onclick="find()">Find</button></div>
+                <button onclick="find()">
+                    <img src="shuffle.png" alt="shuffle"/>
+                  </button></div>
         </div>
             <div>
                 <table class="table" id="CountryTable">
@@ -374,9 +377,9 @@
         });
     }*/
 
-    function getCountryjax(country){
+    function getCountryjax(id){
         $.ajax({
-            "url": '/Countrys/'+country,
+            "url": '/Countrys/'+id,
             "method":"GET",
             "data":"",
             "dataType": "JSON",
@@ -455,9 +458,7 @@
     }
 
     function find(){
-        var form = document.getElementById('createUpdateForm');
-        country = form.querySelector('input[name="country"]').value
-        getCountryjax(country);
+        getCountryjax(Math.floor(Math.random() * 196));
        
         
 
