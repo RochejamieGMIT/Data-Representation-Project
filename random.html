@@ -116,6 +116,7 @@
         
         
         </table>
+        <h4 id="CurrHeading" style="display:none;">Currency Conversion</h4>
         <table class="table" id="CurrTable" style="display:none;">
             <tr>
                 <th></th>
@@ -435,6 +436,7 @@
             "dataType": "JSON",
             "success":function(result){
                 console.log(result);
+                document.getElementById('CurrHeading').style.display="Block"
                 document.getElementById('CurrTable').style.display="Block"
                 var tableElement = document.getElementById('CurrTable')
                 var row1 = tableElement.rows[0];
@@ -468,7 +470,7 @@
                 console.log(result);
                 document.getElementById('WeatherTable').style.display="Block"
                 var tableElement = document.getElementById('WeatherTable')
-                var row1 = tableElement.rows[0];
+                var row1 = tableElement.rows[1];
             row1.setAttribute('Weather', result.current.temperature_2m);
             var cell1_row1 = row1.cells[0];
             cell1_row1.innerHTML = result.current.temperature_2m + " C";
