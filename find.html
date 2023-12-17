@@ -117,7 +117,7 @@
             
             
             </table>
-            <h4 id="CurrTable" style="display:none;">Currency Conversion</h4>
+            <h4 id="CurrHeading" style="display:none;">Currency Conversion</h4>
             <table class="table" id="CurrTable" style="display:none;">
                 <tr>
                     <th></th>
@@ -435,6 +435,7 @@
             "dataType": "JSON",
             "success":function(result){
                 console.log(result);
+                document.getElementById('CurrHeading').style.display="Block"
                 document.getElementById('CurrTable').style.display="Block"
                 var tableElement = document.getElementById('CurrTable')
                 var row1 = tableElement.rows[0];
