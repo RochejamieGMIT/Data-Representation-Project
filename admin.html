@@ -291,7 +291,6 @@
     function getCountryFromForm(){
         var form = document.getElementById('createUpdateForm')
         var Country = {}
-        Country.id = form.querySelector('input[name="id"]').value
         Country.country = form.querySelector('input[name="country"]').value
         Country.Land_area = parseInt(form.querySelector('input[name="Land_area"]').value,10)
         Country.capital = form.querySelector('input[name="capital"]').value
