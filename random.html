@@ -482,7 +482,7 @@ let map;
             }else {
                 zoom2 = 2;
             }
-        let center=[lon, lat]
+        const center=[lon, lat]
         console.log(lat + lon)
             
 
@@ -495,7 +495,7 @@ let map;
         });
     } else {
         map.setCenter(center);
-        map.setZoom(zoom);
+        map.setZoom(zoom2);
     }
 
     map.on("load", () => {
@@ -506,7 +506,7 @@ let map;
 
     }
    
-    showMap(53.41291,-8.24389,8)
+    showMap(53.41291,-8.24389,70273)
 
 
 
