@@ -97,6 +97,16 @@
             
             
             </table>
+            <table class="table" id="CurrTable" style="display:none;">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    
+                   
+            </tr>
+            
+            
+            </table>
             </div>
             <div id="map" style ="width: 10000; height:10000"></div>
            
@@ -388,8 +398,42 @@
                     addCountryToTable(result);
                     showMap(result.Lat,result.lon,result.Land_area)
                     weatherajax(result.Lat,result.lon)
-                    
+                    getCurrnencyax(result.C_Code)
                 
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+
+    function getCurrnencyax(Currency){
+        $.ajax({
+            "url": 'https://currency-conversion-and-exchange-rates.p.rapidapi.com/latest?from=EUR+&to='+Currency,
+            "method":"GET",
+            headers: {
+                'X-RapidAPI-Key': 'be60223c9dmshec53e8b93f40fb1p183999jsn6087dfa1f6cd',
+                'X-RapidAPI-Host': 'currency-conversion-and-exchange-rates.p.rapidapi.com'
+                    },
+            "data":"",
+            "dataType": "JSON",
+            "success":function(result){
+                console.log(result);
+                document.getElementById('CurrTable').style.display="Block"
+                var tableElement = document.getElementById('CurrTable')
+                var rowElement = tableElement.insertRow(-1)
+                rowElement.setAttribute('Curr',Currency)
+                var cell1 = rowElement.insertCell(0);
+                cell1.innerHTML = "EUR"
+                var cell2 = rowElement.insertCell(1);
+                cell2.innerHTML = Currency
+                var tableElement = document.getElementById('CurrTable')
+                var rowElement = tableElement.insertRow(-1)
+                rowElement.setAttribute('Curr',Currency)
+                var cell1 = rowElement.insertCell(0);
+                cell1.innerHTML = "1"
+                var cell2 = rowElement.insertCell(1);
+                cell2.innerHTML = result.rates[Currency]
             },
             "error":function(xhr,status,error){
                 console.log("error: "+status+" msg:"+error);
