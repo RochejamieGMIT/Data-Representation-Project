@@ -50,7 +50,7 @@ def create():
         "Lat": request.json['Lat'],
         "lon": request.json['lon']
     }
-    values =(Country['country'],Country['Land_area'],Country['capital'],Country['co2'],Country['C_Code'],Country['Life_ex'],Country['Min_Wage'],Country['auOff_languagethor'],Country['Population'],Country['Lat'],Country['lon'])
+    values =(Country['country'],Country['Land_area'],Country['capital'],Country['co2'],Country['C_Code'],Country['Life_ex'],Country['Min_Wage'],Country['Off_language'],Country['Population'],Country['Lat'],Country['lon'])
     newId = countryDAO.create(values)
     Country['id'] = newId
     return jsonify(Country)
