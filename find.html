@@ -446,10 +446,11 @@
                 console.log(result);
                 document.getElementById('CurrTable').style.display="Block"
                 var tableElement = document.getElementById('CurrTable')
-                var rowElement = tableElement.rows[1];
+                var rowElement = tableElement.rows[0];
                 rowElement.setAttribute('Curr',Currency)
                 var cell1 = rowElement.cells[0];
                 cell1.innerHTML = "EUR"
+                var rowElement = tableElement.rows[1];
                 var cell2 = rowElement.cells[1];
                 cell2.innerHTML = Currency
                 var tableElement = document.getElementById('CurrTable')
