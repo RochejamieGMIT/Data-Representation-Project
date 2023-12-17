@@ -69,45 +69,72 @@
                     <img src="shuffle.png" alt="shuffle" style="width: 50px; height: 50px;"/>
                   </button></div>
         </div>
-            <div>
-                <table class="table" id="CountryTable">
-                    <tr>
-                            <th>id</th>
-                            <th>Country</th>
-                            <th>Land area</th>
-                            <th>capital</th>
-                            <th>co2</th>
-                            <th>Currency Code</th>
-                            <th>Life Expectancy</th>
-                            <th>Min_Wage</th>
-                            <th>Off_language</th>
-                            <th>Population </th>
-                            <th>Lat</th>
-                            <th>Long</th>
-                    </tr>
-                    
-                </table>
-               <table class="table" id="WeatherTable" style="display:none;">
+        <div>
+            <table class="table" id="CountryTable">
                 <tr>
-                    <th>Temperature</th>
-                    <th>Weather</th>
-                    <th></th>
-                   
-            </tr>
-            
-            
-            </table>
-            <table class="table" id="CurrTable" style="display:none;">
+                        <th>id</th>
+                        <th>Country</th>
+                        <th>Land area</th>
+                        <th>capital</th>
+                        <th>co2</th>
+                        <th>Currency Code</th>
+                        <th>Life Expectancy</th>
+                        <th>Min_Wage</th>
+                        <th>Off_language</th>
+                        <th>Population </th>
+                        <th>Lat</th>
+                        <th>Long</th>
+                </tr>
                 <tr>
                     <th></th>
                     <th></th>
-                    
-                   
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> </th>
+                    <th></th>
+                    <th></th>
             </tr>
-            
-            
             </table>
-            </div>
+           <table class="table" id="WeatherTable" style="display:none;">
+            <tr>
+                <th>Temperature</th>
+                <th>Weather</th>
+                <th></th>
+               
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+           
+    </tr>
+        
+        
+        </table>
+        <table class="table" id="CurrTable" style="display:none;">
+            <tr>
+                <th></th>
+                <th></th>
+                
+               
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            
+           
+    </tr>
+        
+        
+        </table>
+
+
+        </div>
             <div id="map" style ="width: 10000; height:10000"></div>
            
         </body>
@@ -201,32 +228,20 @@
     }
     function addCountryToTable(Country){
         var tableElement = document.getElementById('CountryTable')
-        var rowElement = tableElement.insertRow(-1)
+        var rowElement = tableElement.rows[1];
         rowElement.setAttribute('id',Country.id)
-        var cell1 = rowElement.insertCell(0);
-        cell1.innerHTML = Country.id
-        var cell2 = rowElement.insertCell(1);
-        cell2.innerHTML = Country.country
-        var cell3 = rowElement.insertCell(2);
-        cell3.innerHTML = Country.Land_area
-        var cell4 = rowElement.insertCell(3);
-        cell4.innerHTML = Country.capital
-        var cell5 = rowElement.insertCell(4);
-        cell5.innerHTML = Country.co2
-        var cell6 = rowElement.insertCell(5);
-        cell6.innerHTML = Country.C_Code
-        var cell7 = rowElement.insertCell(6);
-        cell7.innerHTML = Country.Life_ex
-        var cell8 = rowElement.insertCell(7);
-        cell8.innerHTML = Country.Min_Wage
-        var cell9 = rowElement.insertCell(8);
-        cell9.innerHTML = Country.Off_language
-        var cell10 = rowElement.insertCell(9);
-        cell10.innerHTML = Country.Population
-        var cell11 = rowElement.insertCell(10);
-        cell11.innerHTML = Country.Lat
-        var cell12 = rowElement.insertCell(11);
-        cell12.innerHTML = Country.lon
+        rowElement.cells[0].innerHTML = Country.id;
+        rowElement.cells[1].innerHTML = Country.country;
+        rowElement.cells[2].innerHTML = Country.Land_area;
+        rowElement.cells[3].innerHTML = Country.capital;
+        rowElement.cells[4].innerHTML = Country.co2;
+        rowElement.cells[5].innerHTML = Country.C_Code;
+        rowElement.cells[6].innerHTML = Country.Life_ex;
+        rowElement.cells[7].innerHTML = Country.Min_Wage;
+        rowElement.cells[8].innerHTML = Country.Off_language;
+        rowElement.cells[9].innerHTML = Country.Population;
+        rowElement.cells[10].innerHTML = Country.Lat;
+        rowElement.cells[11].innerHTML = Country.lon;
     
 
     }
@@ -421,23 +436,24 @@
                 console.log(result);
                 document.getElementById('CurrTable').style.display="Block"
                 var tableElement = document.getElementById('CurrTable')
-                var rowElement = tableElement.insertRow(-1)
-                rowElement.setAttribute('Curr',Currency)
-                var cell1 = rowElement.insertCell(0);
-                cell1.innerHTML = "EUR"
-                var cell2 = rowElement.insertCell(1);
-                cell2.innerHTML = Currency
-                var tableElement = document.getElementById('CurrTable')
-                var rowElement = tableElement.insertRow(-1)
-                rowElement.setAttribute('Curr',Currency)
-                var cell1 = rowElement.insertCell(0);
-                cell1.innerHTML = "1"
-                var cell2 = rowElement.insertCell(1);
-                cell2.innerHTML = result.rates[Currency]
-            },
-            "error":function(xhr,status,error){
-                console.log("error: "+status+" msg:"+error);
-            }
+                var row1 = tableElement.rows[0];
+            row1.setAttribute('Curr', Currency);
+            var cell1_row1 = row1.cells[0];
+            cell1_row1.innerHTML = "EUR";
+            var cell2_row1 = row1.cells[1];
+            cell2_row1.innerHTML = Currency;
+
+            // Second row
+            var row2 = tableElement.rows[1];
+            row2.setAttribute('Curr', Currency);
+            var cell1_row2 = row2.cells[0];
+            cell1_row2.innerHTML = "1";
+            var cell2_row2 = row2.cells[1];
+            cell2_row2.innerHTML = result.rates[Currency];
+        },
+        "error": function (xhr, status, error) {
+            console.log("error: " + status + " msg:" + error);
+        }
         });
     }
 
@@ -451,52 +467,44 @@
                 console.log(result);
                 document.getElementById('WeatherTable').style.display="Block"
                 var tableElement = document.getElementById('WeatherTable')
-                var rowElement = tableElement.insertRow(-1)
-                rowElement.setAttribute('Weather',result.current.temperature_2m)
-                var cell1 = rowElement.insertCell(0);
-                cell1.innerHTML = result.current.temperature_2m + " C"
-                var cell2 = rowElement.insertCell(1);
-                cell2.innerHTML = "<img src=\"\\weather\\"+result.current.weather_code+".png\" alt=\"Globe\" width=\"90px\">"
-                if (result.current.weather_code == 0) {
-                    zoom2 = "Clear Sky"
-                    } else if (result.current.weather_code == 1) {
-                        zoom2 = "Mainly Clear";
-                    } else if (result.current.weather_code ==2 ) {
-                        zoom2 = "Partly Cloudy";
-                    }else if (result.current.weather_code == 3) {
-                        zoom2 = "Overcast";
-                    }else if (result.current.weather_code < 50) {
-                        zoom2 = "Foggy";
-                    }
-                    else if (result.current.weather_code < 60) {
-                        zoom2 = "Drizzle";
-                    } else if (result.current.weather_code < 70) {
-                        zoom2 = "Rain";
-                    }
-                    else if (result.current.weather_code < 80) {
-                        zoom2 = "Snow";
-                    }
-                    else if (result.current.weather_code < 84) {
-                        zoom2 = "Rain";
-                    }
-                    else if (result.current.weather_code < 87) {
-                        zoom2 = "Snow";
-                    }
-                    else if (result.current.weather_code < 87) {
-                        zoom2 = "Thunder";
-                    }
-                    else {
-                        zoom2 = "Unknown weather";
-                    }
-                
-                
-                var cell3 = rowElement.insertCell(1);
-                cell3.innerHTML = zoom2
-                
-            },
-            "error":function(xhr,status,error){
-                console.log("error: "+status+" msg:"+error);
+                var row1 = tableElement.rows[0];
+            row1.setAttribute('Weather', result.current.temperature_2m);
+            var cell1_row1 = row1.cells[0];
+            cell1_row1.innerHTML = result.current.temperature_2m + " C";
+            var cell2_row1 = row1.cells[1];
+            cell2_row1.innerHTML = "<img src=\"\\weather\\" + result.current.weather_code + ".png\" alt=\"Globe\" width=\"90px\">";
+                    if (result.current.weather_code == 0) {
+                        zoom2 = "Clear Sky";
+            } else if (result.current.weather_code == 1) {
+                zoom2 = "Mainly Clear";
+            } else if (result.current.weather_code == 2) {
+                zoom2 = "Partly Cloudy";
+            } else if (result.current.weather_code == 3) {
+                zoom2 = "Overcast";
+            } else if (result.current.weather_code < 50) {
+                zoom2 = "Foggy";
+            } else if (result.current.weather_code < 60) {
+                zoom2 = "Drizzle";
+            } else if (result.current.weather_code < 70) {
+                zoom2 = "Rain";
+            } else if (result.current.weather_code < 80) {
+                zoom2 = "Snow";
+            } else if (result.current.weather_code < 84) {
+                zoom2 = "Rain";
+            } else if (result.current.weather_code < 87) {
+                zoom2 = "Snow";
+            } else if (result.current.weather_code < 87) {
+                zoom2 = "Thunder";
+            } else {
+                zoom2 = "Unknown weather";
             }
+             var cell3_row1 = row1.cells[2];
+            cell3_row1.innerHTML = zoom2;
+
+        },
+        "error": function (xhr, status, error) {
+            console.log("error: " + status + " msg:" + error);
+        }
         });
 
     }
