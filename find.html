@@ -478,52 +478,44 @@
                 console.log(result);
                 document.getElementById('WeatherTable').style.display="Block"
                 var tableElement = document.getElementById('WeatherTable')
-                var rowElement = tableElement.insertRow(-1)
-                rowElement.setAttribute('Weather',result.current.temperature_2m)
-                var cell1 = rowElement.insertCell(0);
-                cell1.innerHTML = result.current.temperature_2m + " C"
-                var cell2 = rowElement.insertCell(1);
-                cell2.innerHTML = "<img src=\"\\weather\\"+result.current.weather_code+".png\" alt=\"Globe\" width=\"90px\">"
-                if (result.current.weather_code == 0) {
-                    zoom2 = "Clear Sky"
-                    } else if (result.current.weather_code == 1) {
-                        zoom2 = "Mainly Clear";
-                    } else if (result.current.weather_code ==2 ) {
-                        zoom2 = "Partly Cloudy";
-                    }else if (result.current.weather_code == 3) {
-                        zoom2 = "Overcast";
-                    }else if (result.current.weather_code < 50) {
-                        zoom2 = "Foggy";
-                    }
-                    else if (result.current.weather_code < 60) {
-                        zoom2 = "Drizzle";
-                    } else if (result.current.weather_code < 70) {
-                        zoom2 = "Rain";
-                    }
-                    else if (result.current.weather_code < 80) {
-                        zoom2 = "Snow";
-                    }
-                    else if (result.current.weather_code < 84) {
-                        zoom2 = "Rain";
-                    }
-                    else if (result.current.weather_code < 87) {
-                        zoom2 = "Snow";
-                    }
-                    else if (result.current.weather_code < 87) {
-                        zoom2 = "Thunder";
-                    }
-                    else {
-                        zoom2 = "Unknown weather";
-                    }
-                
-                
-                var cell3 = rowElement.insertCell(1);
-                cell3.innerHTML = zoom2
-                
-            },
-            "error":function(xhr,status,error){
-                console.log("error: "+status+" msg:"+error);
+                var row1 = tableElement.rows[0];
+            row1.setAttribute('Weather', result.current.temperature_2m);
+            var cell1_row1 = row1.cells[0];
+            cell1_row1.innerHTML = result.current.temperature_2m + " C";
+            var cell2_row1 = row1.cells[1];
+            cell2_row1.innerHTML = "<img src=\"\\weather\\" + result.current.weather_code + ".png\" alt=\"Globe\" width=\"90px\">";
+                    if (result.current.weather_code == 0) {
+                return "Clear Sky";
+            } else if (result.current.weather_code == 1) {
+                return "Mainly Clear";
+            } else if (result.current.weather_code == 2) {
+                return "Partly Cloudy";
+            } else if (result.current.weather_code == 3) {
+                return "Overcast";
+            } else if (result.current.weather_code < 50) {
+                return "Foggy";
+            } else if (result.current.weather_code < 60) {
+                return "Drizzle";
+            } else if (result.current.weather_code < 70) {
+                return "Rain";
+            } else if (result.current.weather_code < 80) {
+                return "Snow";
+            } else if (result.current.weather_code < 84) {
+                return "Rain";
+            } else if (result.current.weather_code < 87) {
+                return "Snow";
+            } else if (result.current.weather_code < 87) {
+                return "Thunder";
+            } else {
+                return "Unknown weather";
             }
+             var cell3_row1 = row1.cells[2];
+            cell3_row1.innerHTML = zoom2;
+
+        },
+        "error": function (xhr, status, error) {
+            console.log("error: " + status + " msg:" + error);
+        }
         });
 
     }
