@@ -74,11 +74,11 @@
                     <tr>
                             <th>id</th>
                             <th>Country</th>
-                            <th>Land area</th>
+                            <th>Land_area</th>
                             <th>capital</th>
                             <th>co2</th>
                             <th>Currency Code</th>
-                            <th>Life Expectancy</th>
+                            <th>Life_Expectancy</th>
                             <th>Min_Wage</th>
                             <th>Off_language</th>
                             <th>Population </th>
@@ -100,6 +100,7 @@
                         <th></th>
                 </tr>
                 </table>
+                <h3>Current Weather</h3>
                <table class="table" id="WeatherTable" style="display:none;">
                 <tr>
                     <th>Temperature</th>
@@ -467,7 +468,7 @@
                 console.log(result);
                 document.getElementById('WeatherTable').style.display="Block"
                 var tableElement = document.getElementById('WeatherTable')
-                var row1 = tableElement.rows[0];
+                var row1 = tableElement.rows[1];
             row1.setAttribute('Weather', result.current.temperature_2m);
             var cell1_row1 = row1.cells[0];
             cell1_row1.innerHTML = result.current.temperature_2m + " C";
