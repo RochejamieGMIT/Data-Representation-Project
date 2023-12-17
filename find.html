@@ -466,6 +466,7 @@
 
     }
 
+    let map;
     function showMap(lat,lon,Land){
         //https://developer.tomtom.com/
         if (Land < 100) {
@@ -482,21 +483,29 @@
             else if (Land < 2500000) {
                 zoom2 = 3;
             }else {
-                zoom2 = 2;
+                zoom2 = 1;
             }
-        let center=[lon, lat]
+        const center=[lon, lat]
         console.log(lat + lon)
-            const map = tt.map({
-                key: "EAlZWjMGh8FMoHYOW04pVQkIoIFVkGly",
-                container: "map",
-                center: center,
-                zoom: zoom2
+            
 
-            })
-            map.on("load",()=>{
-                new tt.marker().testlnglat(center).addTo(map)
-            });
+        if (!map) {
+        map = tt.map({
+            key: "EAlZWjMGh8FMoHYOW04pVQkIoIFVkGly",
+            container: "map",
+            center: center,
+            zoom: zoom2
+        });
+    } else {
+        map.setCenter(center);
+        map.setZoom(zoom);
     }
+
+
+
+    }
+   
+    showMap(53.41291,-8.24389,70273)
    
         
     
