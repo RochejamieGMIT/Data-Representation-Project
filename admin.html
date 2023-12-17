@@ -180,7 +180,7 @@
         var rowElement = r.parentNode.parentNode;
         var index = rowElement.rowIndex;
         var rowElement = document.getElementById(Country.id);
-        updateCountryAjax(Country);
+        updateCountryAjax(rowElement.getAttribute("id"));
         setCountryInRow(rowElement,Country);
        
         clearForm();
@@ -353,11 +353,11 @@
             }
         });
     }
-    function updateCountryAjax(Country){
+    function updateCountryAjax(id){
         //var car = {"reg":"12 D 1234","price":8000}
-        console.log(JSON.stringify(Country));
+        console.log(JSON.stringify(id));
         $.ajax({
-            "url": "/Countrys/"+encodeURI(Country.id),
+            "url": "/Countrys/"+encodeURI(id),
             "method":"PUT",
             "data":JSON.stringify(Country),
             "dataType": "JSON",
