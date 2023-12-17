@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <style type ="text/css">
     h1 {text-align: left;}
@@ -20,31 +21,28 @@
          <!-- I used images I created as the nav buttons on the left to indicate which page is active -->  
          <!--Create a nav with a light theme, with a drop shadow and it is fixed to the top of the page-->
      
-         <nav class="navbar navbar-light bg-light fixed-top shadow p-3 mb-5 " data-bs-theme="light">
-            <a class="navbar-brand" href="admin.html" style="padding-left: 20px;">
-              <img src="logo.png" alt="Globe" width="90px">
+      <nav class="navbar navbar-light bg-light fixed-top shadow p-3 mb-5 " data-bs-theme="light">
+          <a class="navbar-brand" href="admin.html" style="padding-left: 20px;">
+            <img src="logo.png" alt="Globe" width="90px">
+            </a>
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="find.html">
+              <img src="find.png" alt="Find" width="60px">   <!-- Both home button and logo point no where as the current paghe is the index/home page -->  
               </a>
-          <ul class="nav">
-            <li class="nav-item">
-               <h1>Admin Page</h1>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link" href="find.html">
-                <img src="find.png" alt="Random" width="60px">   <!-- Both home button and logo point no where as the current paghe is the index/home page -->  
-                </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="random.html">
-                <img src="random.png" alt="Random" width="60px">   <!-- Both home button and logo point no where as the current paghe is the index/home page -->  
-                </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="admin.html">
-                <img src="add.png" alt="Add" width="60px">
-                </a>
-            </li>
-            </ul>
-        </nav>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="random.html">
+              <img src="random.png" alt="Random" width="60px">   <!-- Both home button and logo point no where as the current paghe is the index/home page -->  
+              </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin.html">
+              <img src="add.png" alt="Add" width="60px">
+              </a>
+          </li>
+          </ul>
+      </nav>
   </div>
   
   
@@ -62,8 +60,12 @@
           <div class="col">
           
             <br/><br/> <br/> <br/> 
-            <h1>Country</h1>
-            <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
+            <h1>Search For a Counrty</h1>
+            <div id='createUpdateForm' style="display: block">
+                <h2><span id="createLabel"></span> <span id="updateLabel"></span> </h2>
+                Country <input type="text" name="country" /><br/>
+                <div> <button id="findButton" onclick="find()">Find</button></div>
+        </div>
             <div>
                 <table class="table" id="CountryTable">
                     <tr>
@@ -79,27 +81,22 @@
                             <th>Population </th>
                             <th>Lat</th>
                             <th>Long</th>
-                            <th>Update</th>
                     </tr>
                     
                 </table>
+               <table class="table" id="WeatherTable" style="display:none;">
+                <tr>
+                    <th>Temperature</th>
+                    <th>Weather</th>
+                    <th></th>
+                   
+            </tr>
+            
+            
+            </table>
             </div>
-            <div id='createUpdateForm' style="display: none">
-                    <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Country</h2>
-                    <input type="hidden" name="id"/>
-                    Country <input type="text" name="country" /><br/>
-                    Land_area <input type="text" name="Land_area"/> <br/>
-                    capital <input type="number" name="capital"/> <br/>
-                    co2 <input type="text" name="co2" /><br/>
-                    C_Code <input type="text" name="C_Code"/> <br/>
-                    Min_Wage <input type="number" name="Min_Wage"/> <br/>
-                    Off_language <input type="text" name="Off_language" /><br/>
-                    Population <input type="text" name="Population"/> <br/>
-                    Lat <input type="number" name="Lat"/> <br/>
-                    lon <input type="number" name="lon"/> <br/>
-                    <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
-                    <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
-            </div>
+            <div id="map" style ="width: 10000; height:10000"></div>
+           
         </body>
     
       
@@ -218,10 +215,6 @@
         var cell12 = rowElement.insertCell(11);
         cell12.innerHTML = Country.lon
     
-        var cell13 = rowElement.insertCell(12);
-        cell13.innerHTML = '<button onclick="showUpdate(this)">Update</button>'
-        var cell14 = rowElement.insertCell(13);
-        cell14.innerHTML = '<button onclick=doDelete(this)>delete</button>'
 
     }
 
@@ -362,7 +355,7 @@
             }
         });
     }
-    function deleteCountryAjax(id){
+    /*function deleteCountryAjax(id){
         
         console.log(JSON.stringify('deleting '+id));
         $.ajax({
@@ -379,9 +372,130 @@
                 console.log("error: "+status+" msg:"+error);
             }
         });
-    }
-    getAllAjax();
+    }*/
 
+    function getCountryjax(country){
+        $.ajax({
+            "url": '/Countrys/'+country,
+            "method":"GET",
+            "data":"",
+            "dataType": "JSON",
+            "success":function(result){
+                console.log(result);
+                    addCountryToTable(result);
+                    showMap(result.Lat,result.lon,result.Land_area)
+                    weatherajax(result.Lat,result.lon)
+                    
+                
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+
+    function weatherajax(lat,lon){
+        $.ajax({
+            "url": 'https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon+'&current=temperature_2m,weather_code&forecast_days=1',
+            "method":"GET",
+            "data":"",
+            "dataType": "JSON",
+            "success":function(result){
+                console.log(result);
+                document.getElementById('WeatherTable').style.display="Block"
+                var tableElement = document.getElementById('WeatherTable')
+                var rowElement = tableElement.insertRow(-1)
+                rowElement.setAttribute('Weather',result.current.temperature_2m)
+                var cell1 = rowElement.insertCell(0);
+                cell1.innerHTML = result.current.temperature_2m + " C"
+                var cell2 = rowElement.insertCell(1);
+                cell2.innerHTML = "<img src=\"\\weather\\"+result.current.weather_code+".png\" alt=\"Globe\" width=\"90px\">"
+                if (result.current.weather_code == 0) {
+                    zoom2 = "Clear Sky"
+                    } else if (result.current.weather_code == 1) {
+                        zoom2 = "Mainly Clear";
+                    } else if (result.current.weather_code ==2 ) {
+                        zoom2 = "Partly Cloudy";
+                    }else if (result.current.weather_code == 3) {
+                        zoom2 = "Overcast";
+                    }else if (result.current.weather_code < 50) {
+                        zoom2 = "Foggy";
+                    }
+                    else if (result.current.weather_code < 60) {
+                        zoom2 = "Drizzle";
+                    } else if (result.current.weather_code < 70) {
+                        zoom2 = "Rain";
+                    }
+                    else if (result.current.weather_code < 80) {
+                        zoom2 = "Snow";
+                    }
+                    else if (result.current.weather_code < 84) {
+                        zoom2 = "Rain";
+                    }
+                    else if (result.current.weather_code < 87) {
+                        zoom2 = "Snow";
+                    }
+                    else if (result.current.weather_code < 87) {
+                        zoom2 = "Thunder";
+                    }
+                    else {
+                        zoom2 = "Unknown weather";
+                    }
+                
+                
+                var cell3 = rowElement.insertCell(1);
+                cell3.innerHTML = zoom2
+                
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+
+    }
+
+    function find(){
+        var form = document.getElementById('createUpdateForm');
+        country = form.querySelector('input[name="country"]').value
+        getCountryjax(country);
+       
+        
+
+    }
+
+    function showMap(lat,lon,Land){
+        //https://developer.tomtom.com/
+        if (Land < 100) {
+            zoom2 = 10
+            } else if (Land < 10000) {
+                zoom2 = 8;
+            } else if (Land < 25000) {
+                zoom2 = 7;
+            }else if (Land < 50000) {
+                zoom2 = 6;
+            }else if (Land < 100000) {
+                zoom2 = 4;
+            }
+            else if (Land < 2500000) {
+                zoom2 = 3;
+            }else {
+                zoom2 = 2;
+            }
+        let center=[lon, lat]
+        console.log(lat + lon)
+            const map = tt.map({
+                key: "EAlZWjMGh8FMoHYOW04pVQkIoIFVkGly",
+                container: "map",
+                center: center,
+                zoom: zoom2
+
+            })
+            map.on("load",()=>{
+                new tt.marker().testlnglat(center).addTo(map)
+            });
+    }
+   
+        
     
     </script>
   
