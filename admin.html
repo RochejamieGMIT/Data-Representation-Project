@@ -175,14 +175,11 @@
         
         
     }
-    function doUpdate(r){
-        var CountryElement = document.getElementById('CountryTable');
-        var rowElement = r.parentNode.parentNode;
-        var index = rowElement.rowIndex;
-        var rowElement = document.getElementById(Country.id);
-        updateCountryAjax(rowElement.getAttribute("id"));
-        setCountryInRow(rowElement,Country);
-       
+    function doUpdate(){
+        var rowElement = event.target.closest('tr'); // Find the closest row element
+        var Country = getCountryFromRow(rowElement);
+        updateCountryAjax(Country);
+        setCountryInRow(rowElement, Country);
         clearForm();
         showViewAll();
     }
