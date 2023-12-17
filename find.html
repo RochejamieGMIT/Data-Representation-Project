@@ -485,29 +485,29 @@
             var cell2_row1 = row1.cells[1];
             cell2_row1.innerHTML = "<img src=\"\\weather\\" + result.current.weather_code + ".png\" alt=\"Globe\" width=\"90px\">";
                     if (result.current.weather_code == 0) {
-                return "Clear Sky";
+                        zoom2 = "Clear Sky";
             } else if (result.current.weather_code == 1) {
-                return "Mainly Clear";
+                zoom2 = "Mainly Clear";
             } else if (result.current.weather_code == 2) {
-                return "Partly Cloudy";
+                zoom2 = "Partly Cloudy";
             } else if (result.current.weather_code == 3) {
-                return "Overcast";
+                zoom2 = "Overcast";
             } else if (result.current.weather_code < 50) {
-                return "Foggy";
+                zoom2 = "Foggy";
             } else if (result.current.weather_code < 60) {
-                return "Drizzle";
+                zoom2 = "Drizzle";
             } else if (result.current.weather_code < 70) {
-                return "Rain";
+                zoom2 = "Rain";
             } else if (result.current.weather_code < 80) {
-                return "Snow";
+                zoom2 = "Snow";
             } else if (result.current.weather_code < 84) {
-                return "Rain";
+                zoom2 = "Rain";
             } else if (result.current.weather_code < 87) {
-                return "Snow";
+                zoom2 = "Snow";
             } else if (result.current.weather_code < 87) {
-                return "Thunder";
+                zoom2 = "Thunder";
             } else {
-                return "Unknown weather";
+                zoom2 = "Unknown weather";
             }
              var cell3_row1 = row1.cells[2];
             cell3_row1.innerHTML = zoom2;
