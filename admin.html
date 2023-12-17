@@ -292,6 +292,10 @@
         var form = document.getElementById('createUpdateForm')
         var Country = {}
         Country.id = parseInt(form.querySelector('input[name="id"]').value,10)
+        var idValue = form.querySelector('input[name="id"]').value;
+        console.log("ID Value:", idValue);
+        Country.id = parseInt(idValue, 10);
+        console.log("Parsed ID:", Country.id);
         Country.country = form.querySelector('input[name="country"]').value
         Country.Land_area = parseInt(form.querySelector('input[name="Land_area"]').value,10)
         Country.capital = form.querySelector('input[name="capital"]').value
