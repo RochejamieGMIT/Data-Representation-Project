@@ -241,21 +241,23 @@
         form.querySelector('input[name="Lat"]').value
         form.querySelector('input[name="lon"]').value
     }
-    function getCountryFromRow(rowElement){
-        var Country ={}
-        Country.id  = rowElement.getAttribute('id')
-        Country.country = rowElement.cells[1].firstChild.textContent
-        Country.Land_area = rowElement.cells[2].firstChild.textContent
-        Country.capital = rowElement.cells[3].firstChild.textContent
-        Country.co2 = rowElement.cells[4].firstChild.textContent
-        Country.Life_ex = rowElement.cells[5].firstChild.textContent
-        Country.Min_Wage = rowElement.cells[6].firstChild.textContent
-        Country.Off_language = rowElement.cells[7].firstChild.textContent
-        Country.Population = rowElement.cells[8].firstChild.textContent
-        Country.Lat = rowElement.cells[9].firstChild.textContent
-        Country.lon = rowElement.cells[10].firstChild.textContent
-        return Country
+    function getCountryFromRow(rowElement) {
+    var Country = {};
+    if (rowElement && rowElement.getAttribute('id')) {
+        Country.id = rowElement.getAttribute('id');
+        Country.country = rowElement.cells[1].textContent || '';
+        Country.Land_area = rowElement.cells[2].textContent || '';
+        Country.capital = rowElement.cells[3].textContent || '';
+        Country.co2 = rowElement.cells[4].textContent || '';
+        Country.Life_ex = rowElement.cells[5].textContent || '';
+        Country.Min_Wage = rowElement.cells[6].textContent || '';
+        Country.Off_language = rowElement.cells[7].textContent || '';
+        Country.Population = rowElement.cells[8].textContent || '';
+        Country.Lat = rowElement.cells[9].textContent || '';
+        Country.lon = rowElement.cells[10].textContent || '';
     }
+    return Country;
+}
     function setCountryInRow(rowElement, Country){
         console.log("Row Element:", rowElement);
         rowElement.cells[0].firstChild.textContent= Country.id  
