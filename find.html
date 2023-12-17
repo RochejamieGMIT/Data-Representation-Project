@@ -467,7 +467,6 @@
     }
 
     let map;
-    let zoom;
     function showMap(lat,lon,Land){
         //https://developer.tomtom.com/
         if (Land < 100) {
@@ -494,12 +493,11 @@
         map = tt.map({
             key: "EAlZWjMGh8FMoHYOW04pVQkIoIFVkGly",
             container: "map",
-            center: center,
-            zoom: zoom2
+            center: center
         });
     } else {
         map.setCenter(center);
-        map.setZoom(zoom);
+        map.setZoom(zoom2);
     }
 
 
@@ -507,6 +505,7 @@
     }
    
     showMap(53.41291,-8.24389,70273)
+
    
         
     
