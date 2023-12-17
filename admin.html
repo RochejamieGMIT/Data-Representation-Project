@@ -291,6 +291,7 @@
     function getCountryFromForm(){
         var form = document.getElementById('createUpdateForm')
         var Country = {}
+        Country.id = parseInt(form.querySelector('input[name="id"]').value,10)
         Country.country = form.querySelector('input[name="country"]').value
         Country.Land_area = parseInt(form.querySelector('input[name="Land_area"]').value,10)
         Country.capital = form.querySelector('input[name="capital"]').value
@@ -299,7 +300,7 @@
         Country.Life_ex = parseFloat(form.querySelector('input[name="Life_ex"]').value,10)
         Country.Min_Wage = form.querySelector('input[name="Min_Wage"]').value
         Country.Off_language = form.querySelector('input[name="Off_language"]').value
-        Country.Population = form.querySelector('input[name="Population"]').value
+        Country.Population = parseInt(form.querySelector('input[name="Population"]').value,10)
         Country.Lat = parseFloat(form.querySelector('input[name="Lat"]').value,10)
         Country.lon = parseFloat(form.querySelector('input[name="lon"]').value,10)
         console.log(JSON.stringify(Country))
