@@ -175,9 +175,10 @@
         
         
     }
-    function doUpdate(){
-        
-        var Country = getCountryFromForm();
+    function doUpdate(r){
+        var CountryElement = document.getElementById('CountryTable');
+        var rowElement = r.parentNode.parentNode;
+        var index = rowElement.rowIndex;
         var rowElement = document.getElementById(Country.id);
         updateCountryAjax(Country);
         setCountryInRow(rowElement,Country);
