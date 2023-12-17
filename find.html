@@ -83,6 +83,7 @@
                 <tr>
                     <th>Weather</th>
                     <th>Temperature</th>
+                    <th>Temperature</th>
                    
             </tr>
             
@@ -402,9 +403,43 @@
                 rowElement.setAttribute('Weather',result.current.temperature_2m)
                 var cell1 = rowElement.insertCell(0);
                 cell1.innerHTML = result.current.temperature_2m
-                var cell1 = rowElement.insertCell(0);
+                var cell2 = rowElement.insertCell(0);
                 cell1.innerHTML = "<img src=\"\\weather\\"+result.current.weather_code+".png\" alt=\"Globe\" width=\"90px\">"
-
+                if (result.current.weather_code == 0) {
+                    zoom2 = "Clear Sky"
+                    } else if (result.current.weather_code == 1) {
+                        zoom2 = "Mainly Clear";
+                    } else if (result.current.weather_code ==2 ) {
+                        zoom2 = "Partly Cloudy";
+                    }else if (result.current.weather_code == 3) {
+                        zoom2 = "Overcast";
+                    }else if (result.current.weather_code < 50) {
+                        zoom2 = "Foggy";
+                    }
+                    else if (result.current.weather_code < 60) {
+                        zoom2 = "Drizzle";
+                    } else if (result.current.weather_code < 70) {
+                        zoom2 = "Rain";
+                    }
+                    else if (result.current.weather_code < 80) {
+                        zoom2 = "Snow";
+                    }
+                    else if (result.current.weather_code < 84) {
+                        zoom2 = "Rain";
+                    }
+                    else if (result.current.weather_code < 87) {
+                        zoom2 = "Snow";
+                    }
+                    else if (result.current.weather_code < 87) {
+                        zoom2 = "Thunder";
+                    }
+                    else {
+                        zoom2 = "Unknown weather";
+                    }
+                
+                
+                var cell3 = rowElement.insertCell(0);
+                cell1.innerHTML = result.current.temperature
                 
             },
             "error":function(xhr,status,error){
