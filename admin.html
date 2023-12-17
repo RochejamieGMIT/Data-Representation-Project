@@ -258,6 +258,7 @@
         return Country
     }
     function setCountryInRow(rowElement, Country){
+        console.log("Row Element:", rowElement);
         rowElement.cells[0].firstChild.textContent= Country.id  
         rowElement.cells[1].firstChild.textContent= Country.country 
         rowElement.cells[2].firstChild.textContent= Country.Land_area
