@@ -403,8 +403,8 @@
                 rowElement.setAttribute('Weather',result.current.temperature_2m)
                 var cell1 = rowElement.insertCell(0);
                 cell1.innerHTML = result.current.temperature_2m
-                var cell1 = rowElement.insertCell(2);
-                cell1.innerHTML = "<img src=\"\\weather\\"+result.current.weather_code+".png\" alt=\"Globe\" width=\"90px\">"
+                var cell2 = rowElement.insertCell(1);
+                cell2.innerHTML = "<img src=\"\\weather\\"+result.current.weather_code+".png\" alt=\"Globe\" width=\"90px\">"
                 if (result.current.weather_code == 0) {
                     zoom2 = "Clear Sky"
                     } else if (result.current.weather_code == 1) {
@@ -438,8 +438,8 @@
                     }
                 
                 
-                var cell1 = rowElement.insertCell(1);
-                cell1.innerHTML = zoom2
+                var cell3 = rowElement.insertCell(1);
+                cell3.innerHTML = zoom2
                 
             },
             "error":function(xhr,status,error){
