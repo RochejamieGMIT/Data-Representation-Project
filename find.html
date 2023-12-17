@@ -225,7 +225,7 @@
     }
     function addCountryToTable(Country){
         var tableElement = document.getElementById('CountryTable')
-        var rowElement = tableElement.rows[0];
+        var rowElement = tableElement.rows[1];
         rowElement.setAttribute('id',Country.id)
         rowElement.cells[0].innerHTML = Country.id;
         rowElement.cells[1].innerHTML = Country.country;
