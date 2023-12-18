@@ -356,6 +356,7 @@
     }
     function updateCountryAjax(Country){
         //var car = {"reg":"12 D 1234","price":8000}
+        host = window.location.origin
         console.log("upate country ajax: " +JSON.stringify(Country));
         $.ajax({
             "url": "/Countrys/"+encodeURI(Country.id),
