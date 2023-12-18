@@ -246,16 +246,18 @@
     function getCountryFromRow(rowElement){
         var Country ={}
         Country.id  = rowElement.getAttribute('id')
+        console.log("getCounrtyFromRow: "+Country.id )
         Country.country = rowElement.cells[1].firstChild.textContent
         Country.Land_area = rowElement.cells[2].firstChild.textContent
         Country.capital = rowElement.cells[3].firstChild.textContent
         Country.co2 = rowElement.cells[4].firstChild.textContent
-        Country.Life_ex = rowElement.cells[5].firstChild.textContent
-        Country.Min_Wage = rowElement.cells[6].firstChild.textContent
-        Country.Off_language = rowElement.cells[7].firstChild.textContent
-        Country.Population = rowElement.cells[8].firstChild.textContent
-        Country.Lat = rowElement.cells[9].firstChild.textContent
-        Country.lon = rowElement.cells[10].firstChild.textContent
+        Country.C_Code = rowElement.cells[5].firstChild.textContent
+        Country.Life_ex = rowElement.cells[6].firstChild.textContent
+        Country.Min_Wage = rowElement.cells[7].firstChild.textContent
+        Country.Off_language = rowElement.cells[8].firstChild.textContent
+        Country.Population = rowElement.cells[9].firstChild.textContent
+        Country.Lat = rowElement.cells[10].firstChild.textContent
+        Country.lon = rowElement.cells[11].firstChild.textContent
         return Country
     }
     function setCountryInRow(rowElement, Country){
@@ -263,14 +265,15 @@
         rowElement.cells[0].firstChild.textContent= Country.id  
         rowElement.cells[1].firstChild.textContent= Country.country 
         rowElement.cells[2].firstChild.textContent= Country.Land_area
-        rowElement.cells[3].firstChild.textContent= Country.co2
-        rowElement.cells[4].firstChild.textContent= Country.C_Code
-        rowElement.cells[5].firstChild.textContent= Country.Life_ex
-        rowElement.cells[6].firstChild.textContent= Country.Min_Wage
-        rowElement.cells[7].firstChild.textContent= Country.Off_language
-        rowElement.cells[8].firstChild.textContent= Country.Population
-        rowElement.cells[9].firstChild.textContent= Country.Lat
-        rowElement.cells[10].firstChild.textContent= Country.lon
+        rowElement.cells[3].firstChild.textContent= Country.capital
+        rowElement.cells[4].firstChild.textContent= Country.co2
+        rowElement.cells[5].firstChild.textContent= Country.C_Code
+        rowElement.cells[6].firstChild.textContent= Country.Life_ex
+        rowElement.cells[7].firstChild.textContent= Country.Min_Wage
+        rowElement.cells[8].firstChild.textContent= Country.Off_language
+        rowElement.cells[9].firstChild.textContent= Country.Population
+        rowElement.cells[10].firstChild.textContent= Country.Lat
+        rowElement.cells[11].firstChild.textContent= Country.lon
 
     }
     function populateFormWithCountry(Country){
@@ -304,7 +307,7 @@
         Country.Population = parseInt(form.querySelector('input[name="Population"]').value,10)
         Country.Lat = parseFloat(form.querySelector('input[name="Lat"]').value,10)
         Country.lon = parseFloat(form.querySelector('input[name="lon"]').value,10)
-        console.log(JSON.stringify(Country))
+        console.log("get counrty form Form:"+JSON.stringify(Country))
         return Country
     }
     function getAllAjax(){
@@ -349,7 +352,7 @@
     }
     function updateCountryAjax(Country){
         //var car = {"reg":"12 D 1234","price":8000}
-        console.log(JSON.stringify(Country));
+        console.log("upate country ajax: " +JSON.stringify(Country));
         $.ajax({
             "url": "/Countrys/"+encodeURI(Country.id),
             "method":"PUT",
