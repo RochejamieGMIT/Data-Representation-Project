@@ -65,7 +65,16 @@ def update(id):
     if not request.json:
         abort(400)
     reqJson = request.json
-  
+    if 'Land_area' in reqJson and type(reqJson['Land_area']) is not int:
+        abort(400)
+    if 'Life_ex' in reqJson and type(reqJson['Life_ex']) is not float:
+        abort(400)
+    if 'Population' in reqJson and type(reqJson['Population']) is not int:
+        abort(400)
+    if 'Lat' in reqJson and type(reqJson['Lat']) is not float:
+        abort(400)
+    if 'lon' in reqJson and type(reqJson['lon']) is not float:
+        abort(400)
 
     if 'country' in reqJson:
         foundCountrys['country'] = reqJson['country']
