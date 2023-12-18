@@ -87,7 +87,7 @@
             </div>
             <div id='createUpdateForm' style="display: none">
                     <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Country</h2>
-                    <input type="text" name="id"/>
+                    <input type="hidden" name="id"/>
                     Country <input type="text" name="country" /><br/>
                     Land_area <input type="number" name="Land_area"/> <br/>
                     capital <input type="text" name="capital"/> <br/>
@@ -152,6 +152,7 @@
         // these is a way of finding the closest <tr> which would safer, closest()
         console.log("ROW ELEMENT:"+JSON.stringify(rowElement))
         var Country = getCountryFromRow(rowElement)
+        console.log("Show update: "+JSON.stringify(Country))
         populateFormWithCountry(Country)
     }
     function doCreate(){
@@ -178,6 +179,7 @@
     function doUpdate(){
         
         var Country = getCountryFromForm();
+        console.log("Do Update: "+JSON.stringify(Country))
         var rowElement = document.getElementById(Country.id);
         updateCountryAjax(Country);
         setCountryInRow(rowElement,Country);
@@ -278,6 +280,7 @@
     }
     function populateFormWithCountry(Country){
         var form = document.getElementById('createUpdateForm')
+        form.querySelector('input[name="id"]').disabled = true
         form.querySelector('input[name="id"]').value
         form.querySelector('input[name="country"]').value
         form.querySelector('input[name="Land_area"]').value
