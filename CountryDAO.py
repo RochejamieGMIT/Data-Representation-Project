@@ -76,7 +76,7 @@ class CountryDAO:
 
     def update(self, values):
         cursor = self.getcursor()
-        sql="update country set country=%s,Land_area=%s, capital=%s,co2=%s,C_Code=%s,Life_ex=%sMin_Wage=%s,Off_language=%s,Population=%s,Lat=%s,lon=%s  where id = %s"
+        sql="update country set id=%s, country=%s,Land_area=%s, capital=%s,co2=%s,C_Code=%s,Life_ex=%sMin_Wage=%s,Off_language=%s,Population=%s,Lat=%s,lon=%s  where id = %s"
         cursor.execute(sql, values)
         self.connection.commit()
         self.closeAll()
