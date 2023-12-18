@@ -70,7 +70,8 @@ def update(id):
     if 'Population' in reqJson and type(reqJson['Population']) is not int:
         abort(400)
   
-
+    if 'id' in reqJson:
+        foundCountrys['id'] = reqJson['id']
     if 'country' in reqJson:
         foundCountrys['country'] = reqJson['country']
     if 'Land_area' in reqJson:
@@ -82,7 +83,7 @@ def update(id):
     if 'C_Code' in reqJson:
         foundCountrys['C_Code'] = reqJson['C_Code']
     if 'Life_ex' in reqJson:
-        foundCountrys['Life_ex'] = reqJson['pricLife_exe']
+        foundCountrys['Life_ex'] = reqJson['Life_ex']
     if 'Min_Wage' in reqJson:
         foundCountrys['Min_Wage'] = reqJson['Min_Wage']
     if 'Off_language' in reqJson:
