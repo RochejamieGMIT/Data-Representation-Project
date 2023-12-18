@@ -282,18 +282,17 @@
         var form = document.getElementById('createUpdateForm')
         form.querySelector('input[name="id"]').disabled = true
         form.querySelector('input[name="id"]').value  = Country.id
-        form.querySelector('input[name="id"]').value
-        form.querySelector('input[name="country"]').value
-        form.querySelector('input[name="Land_area"]').value
-        form.querySelector('input[name="capital"]').value
-        form.querySelector('input[name="co2"]').value
-        form.querySelector('input[name="C_Code"]').value
-        form.querySelector('input[name="Life_ex"]').value
-        form.querySelector('input[name="Min_Wage"]').value
-        form.querySelector('input[name="Off_language"]').value
-        form.querySelector('input[name="Population"]').value
-        form.querySelector('input[name="Lat"]').value
-        form.querySelector('input[name="lon"]').value
+        form.querySelector('input[name="country"]').value = Country.country
+        form.querySelector('input[name="Land_area"]').value= Country.Land_area
+        form.querySelector('input[name="capital"]').value= Country.capital
+        form.querySelector('input[name="co2"]').value= Country.co2
+        form.querySelector('input[name="C_Code"]').value= Country.C_Code
+        form.querySelector('input[name="Life_ex"]').value= Country.Life_ex
+        form.querySelector('input[name="Min_Wage"]').value= Country.Min_Wage
+        form.querySelector('input[name="Off_language"]').value= Country.Off_language
+        form.querySelector('input[name="Population"]').value= Country.Population
+        form.querySelector('input[name="Lat"]').value= Country.Lat
+        form.querySelector('input[name="lon"]').value= Country.lon
         return Country
     }
     function getCountryFromForm(){
