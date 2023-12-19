@@ -74,6 +74,24 @@ class CountryDAO:
         self.closeAll()
         return returnvalue
 
+    def findByRegion(self, region,limit):
+        cursor = self.getcursor()
+        sql="select c.country,c.capital,r.region,r.literacy,r.phone from country c inner join regionInfo r on c.country = r.country where r.region = '%s' limit %s;"
+        values = (region,limit,)
+
+        cursor.execute(sql, values)
+        results = cursor.fetchall()
+        returnArray = []
+        print(results)
+        for result in results:
+            print(result)
+            returnArray.append(self.convertToDictionary(result))
+        
+        self.closeAll()
+        return returnArray
+
+
+
     def update(self, values):
         cursor = self.getcursor()
         sql="update country set country= %s,Land_area= %s, capital= %s,co2= %s,C_Code= %s,Life_ex= %s,Min_Wage=%s,Off_language=%s,Population=%s,Lat=%s,lon=%s  where id = %s"

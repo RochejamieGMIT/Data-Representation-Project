@@ -16,6 +16,13 @@ def getAll():
     results = countryDAO.getAll()
     return jsonify(results)
 
+@app.route('/regionInfo')
+def findByRegion():
+    #print("in getall")
+    results = countryDAO.findByRegion("WESTERN EUROPE",5)
+    return jsonify(results)
+
+
 #curl "http://127.0.0.1:5000/books/2"
 @app.route('/Countrys/<int:id>')
 def findById(id):

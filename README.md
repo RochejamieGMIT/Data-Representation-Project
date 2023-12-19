@@ -19,3 +19,7 @@ https://currency-conversion-and-exchange-rates.p.rapidapi.com/latest?from=EUR+&t
 Weather API:
 https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon+'&current=temperature_2m,weather_code&forecast_days=1
 
+
+Inner join mysql query:
+select c.country,c.capital,r.region,r.literacy,r.phone from country c inner join regionInfo r on c.country = r.country where r.region = 'WESTERN EUROPE';
+
