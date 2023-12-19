@@ -108,8 +108,8 @@ def update(id):
 def region_info():
     #print("in getall")
     return "FindByRegion"
-    results = countryDAO.findByRegion()
-    return jsonify(results)    
+    #results = countryDAO.findByRegion()
+    #return jsonify(results)    
 
 @app.route('/Countrys/<int:id>' , methods=['DELETE'])
 def delete(id):
