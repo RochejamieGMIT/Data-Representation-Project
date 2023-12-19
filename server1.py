@@ -10,7 +10,7 @@ def index():
     return "Hello, World!"
 
 
-@app.route('/h')
+@app.route('/H')
 def help():
     return "HELP ME PLZZZZ"
 
