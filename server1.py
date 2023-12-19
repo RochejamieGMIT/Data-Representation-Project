@@ -16,7 +16,7 @@ def getAll():
     results = countryDAO.getAll()
     return jsonify(results)
 
-@app.route('/regionInfo')
+@app.route('/RegionInfo')
 def findByRegion():
     #print("in getall")
     return "FindByRegion"
