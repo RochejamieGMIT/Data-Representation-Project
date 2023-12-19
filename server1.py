@@ -16,13 +16,6 @@ def getAll():
     results = countryDAO.getAll()
     return jsonify(results)
 
-@app.route('/regionInfo')
-def region_info():
-    #print("in getall")
-    return "FindByRegion"
-    results = countryDAO.findByRegion()
-    return jsonify(results)
-
 
 #curl "http://127.0.0.1:5000/books/2"
 @app.route('/Countrys/<int:id>')
@@ -111,7 +104,12 @@ def update(id):
     return jsonify(foundCountrys)
         
 
-    
+@app.route('/regionInfo')
+def region_info():
+    #print("in getall")
+    return "FindByRegion"
+    results = countryDAO.findByRegion()
+    return jsonify(results)    
 
 @app.route('/Countrys/<int:id>' , methods=['DELETE'])
 def delete(id):
