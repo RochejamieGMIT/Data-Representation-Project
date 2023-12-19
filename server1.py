@@ -9,6 +9,11 @@ app = Flask(__name__, static_url_path='', static_folder='.')
 def index():
     return "Hello, World!"
 
+
+@app.route('/h')
+def help():
+    return "HELP ME PLZZZZ"
+
 #curl "http://127.0.0.1:5000/books"
 @app.route('/Countrys')
 def getAll():
@@ -102,12 +107,7 @@ def update(id):
     values = (foundCountrys['country'],foundCountrys['Land_area'],foundCountrys['capital'],foundCountrys['co2'],foundCountrys['C_Code'],foundCountrys['Life_ex'],foundCountrys['Min_Wage'],foundCountrys['Off_language'],foundCountrys['Population'],foundCountrys['Lat'],foundCountrys['lon'],foundCountrys['id'])
     countryDAO.update(values)
     return jsonify(foundCountrys)
-        
 
-@app.route('/help', methods=['GET'])
-def show_help():
-    return "HELP ME PLZZZZ"
-  
 
 @app.route('/Countrys/<int:id>' , methods=['DELETE'])
 def delete(id):
