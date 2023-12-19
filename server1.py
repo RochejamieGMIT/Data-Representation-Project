@@ -104,7 +104,7 @@ def update(id):
     return jsonify(foundCountrys)
         
 
-@app.route('/1')
+@app.route('/Countrys2')
 def findByRegion():
     #print("in getall")
     return "FindByRegion"
