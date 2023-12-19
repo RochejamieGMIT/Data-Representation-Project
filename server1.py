@@ -104,8 +104,8 @@ def update(id):
     return jsonify(foundCountrys)
         
 
-@app.route('/regionInfo')
-def region_info():
+@app.route('/1')
+def findByRegion():
     #print("in getall")
     return "FindByRegion"
     #results = countryDAO.findByRegion()
