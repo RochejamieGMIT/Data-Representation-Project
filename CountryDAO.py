@@ -78,7 +78,7 @@ class CountryDAO:
         cursor = self.getcursor()
         #sql="select c.country,c.capital,r.region,r.literacy,r.phone from country c inner join regionInfo r on c.country = r.country where r.region = 'WESTERN EUROPE' limit 5;"
         #values = (region,limit,)
-        sql="select * from country"
+        sql="select * from regionInfo"
         cursor.execute(sql)
         results = cursor.fetchall()
         returnArray = []
