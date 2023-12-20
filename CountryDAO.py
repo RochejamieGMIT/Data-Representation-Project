@@ -81,15 +81,12 @@ class CountryDAO:
         cursor = self.getcursor()
         sql="select *  from pw"
         cursor.execute(sql)
-        results = cursor.fetchall()
-        returnArray = []
-        print(results)
-        for result in results:
-            print(result)
-            returnArray.append(self.convertToDictionary(result))
+        result = cursor.fetchone()
         
+        result = cursor.fetchone()
+        returnvalue = self.convertToDictionary(result)
         self.closeAll()
-        return returnArray
+        return returnvalue
 
 
 
