@@ -74,9 +74,9 @@ class CountryDAO:
         self.closeAll()
         return returnvalue
 
-    def findByRegion(self):
+    def findByRegion(self,region,limit):
         
-        sql="select c.country,c.capital,r.region,r.literacy,r.phone from country c inner join regionInfo r on c.country = r.country where r.region = 'WESTERN EUROPE' limit 5"
+        sql="select c.country,c.capital,r.region,r.literacy,r.phone from country c inner join regionInfo r on c.country = r.country where r.region = '%s' limit %s"
         #values = (limit,)
         cursor = self.getcursor()
         #sql="select * from regionInfo"
