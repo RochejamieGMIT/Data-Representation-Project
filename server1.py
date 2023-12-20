@@ -12,7 +12,7 @@ def index():
 
 @app.route("/InfoRegion")
 def region_info():
-    results = countryDAO.findByRegion()
+    results = countryDAO.findByRegion("EASTERN EUROPE")
     return jsonify(results)
 
 

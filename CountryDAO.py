@@ -74,13 +74,13 @@ class CountryDAO:
         self.closeAll()
         return returnvalue
 
-    def findByRegion(self):
+    def findByRegion(self,value):
         
-        sql="select c.country,c.capital,r.region,r.literacy,r.phone from country c inner join regionInfo r on c.country = r.country where r.region = 'EASTERN EUROPE'"
+        sql="select c.country,c.capital,r.region,r.literacy,r.phone from country c inner join regionInfo r on c.country = r.country where r.region = '%s'"
         #values = (region,)
         cursor = self.getcursor()
         #sql="select * from regionInfo"
-        cursor.execute(sql)
+        cursor.execute(sql,value)
         results = cursor.fetchall()
         returnArray = []
         #print(results)
