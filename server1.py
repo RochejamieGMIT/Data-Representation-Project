@@ -12,7 +12,8 @@ def index():
 
 @app.route("/Region")
 def region_info():
-    return "region info please"
+    results = countryDAO.findByRegion()
+    return jsonify(results)
 
 #curl "http://127.0.0.1:5000/books"
 @app.route('/Countrys')
