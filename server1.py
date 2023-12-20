@@ -5,7 +5,7 @@ app = Flask(__name__, static_url_path='', static_folder='.')
 
 #app = Flask(__name__)
 
-@app.route('/reg')
+@app.route('/')
 def index():
     return "Hello, World!"
 
