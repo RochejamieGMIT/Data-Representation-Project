@@ -76,17 +76,17 @@ class CountryDAO:
 
     def findByRegion(self):
         
-        #sql="select c.country,c.capital,r.region,r.literacy,r.phone from country c inner join regionInfo r on c.country = r.country where r.region = 'WESTERN EUROPE' limit 5"
+        sql="select c.country,c.capital,r.region,r.literacy,r.phone from country c inner join regionInfo r on c.country = r.country where r.region = 'WESTERN EUROPE' limit 5"
         #values = (limit,)
         cursor = self.getcursor()
-        sql="select * from regionInfo"
+        #sql="select * from regionInfo"
         cursor.execute(sql)
         results = cursor.fetchall()
         returnArray = []
-        print(results)
+        #print(results)
         for result in results:
-            print(result)
-            returnArray.append(self.convertToDictionary(result))
+            #print(result)
+            returnArray.append(self.convertToRegionDict(result))
         
         self.closeAll()
         return returnArray
@@ -114,6 +114,17 @@ class CountryDAO:
 
     def convertToDictionary(self, result):
         colnames=["id","country","Land_area", "capital","co2","C_Code","Life_ex","Min_Wage","Off_language","Population","Lat","lon"]
+        item = {}
+        
+        if result:
+            for i, colName in enumerate(colnames):
+                value = result[i]
+                item[colName] = value
+        
+        return item
+    
+    def convertToRegionDict(self, result):
+        colnames=["country","capital","region", "literacy","phone"]
         item = {}
         
         if result:
