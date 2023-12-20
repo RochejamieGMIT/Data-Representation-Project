@@ -200,15 +200,20 @@
     }
     function addCountryToTable(Country){
         var tableElement = document.getElementById('CountryTable')
-        var rowElement = tableElement.rows[1];
+        var rowElement = tableElement.rows[1];        
+        var tableElement = document.getElementById('CountryTable')
+        var rowElement = tableElement.insertRow(-1)
         rowElement.setAttribute('country',Country.country)
-        rowElement.cells[0].innerHTML = Country.country;
-        rowElement.cells[1].innerHTML = Country.capital;
-        rowElement.cells[2].innerHTML = Country.region;
-        rowElement.cells[3].innerHTML = Country.literacy;
-        rowElement.cells[4].innerHTML = Country.phone;
-     
-    
+        var cell1 = rowElement.insertCell(0);
+        cell1.innerHTML = Country.country
+        var cell2 = rowElement.insertCell(1);
+        cell2.innerHTML = Country.capital
+        var cell3 = rowElement.insertCell(2);
+        cell3.innerHTML = Country.region
+        var cell4 = rowElement.insertCell(3);
+        cell4.innerHTML = Country.literacy
+        var cell5 = rowElement.insertCell(4);
+        cell5.innerHTML = Country.phone
 
     }
 
