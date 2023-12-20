@@ -201,22 +201,17 @@
     function addCountryToTable(Country){
         var tableElement = document.getElementById('CountryTable')
         var rowElement = tableElement.rows[1];
-        rowElement.setAttribute('id',Country.id)
-        rowElement.cells[0].innerHTML = Country.id;
-        rowElement.cells[1].innerHTML = Country.country;
-        rowElement.cells[2].innerHTML = Country.Land_area;
-        rowElement.cells[3].innerHTML = Country.capital;
-        rowElement.cells[4].innerHTML = Country.co2;
-        rowElement.cells[5].innerHTML = Country.C_Code;
-        rowElement.cells[6].innerHTML = Country.Life_ex;
-        rowElement.cells[7].innerHTML = Country.Min_Wage;
-        rowElement.cells[8].innerHTML = Country.Off_language;
-        rowElement.cells[9].innerHTML = Country.Population;
-        rowElement.cells[10].innerHTML = Country.Lat;
-        rowElement.cells[11].innerHTML = Country.lon;
+        rowElement.setAttribute('country',Country.country)
+        rowElement.cells[0].innerHTML = Country.country;
+        rowElement.cells[1].innerHTML = Country.capital;
+        rowElement.cells[2].innerHTML = Country.region;
+        rowElement.cells[3].innerHTML = Country.literacy;
+        rowElement.cells[4].innerHTML = Country.phone;
+     
     
 
     }
+
 
     function clearForm(){
         var form = document.getElementById('createUpdateForm')
