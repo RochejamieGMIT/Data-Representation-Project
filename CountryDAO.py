@@ -81,7 +81,7 @@ class CountryDAO:
         cursor = self.getcursor()
         sql="select region from regionInfo"
         cursor.execute(sql)
-        result = cursor.fetchmany()
+        result = cursor.fetchone()
         
         returnvalue = self.convertToDictionary(result)
         self.closeAll()
