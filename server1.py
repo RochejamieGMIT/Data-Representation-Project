@@ -10,9 +10,9 @@ def index():
     return "Hello, World!"
 
 
-@app.route('/H')
-def help():
-    return "HELP ME PLZZZZ"
+@app.route("/Region")
+def region_info():
+    return "region info please"
 
 #curl "http://127.0.0.1:5000/books"
 @app.route('/Countrys')
