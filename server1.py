@@ -5,14 +5,10 @@ app = Flask(__name__, static_url_path='', static_folder='.')
 
 #app = Flask(__name__)
 
-@app.route('/')
+@app.route('/reg')
 def index():
     return "Hello, World!"
 
-
-@app.route("/Region")
-def region_info():
-    return "region info please"
 
 #curl "http://127.0.0.1:5000/books"
 @app.route('/Countrys')
