@@ -10,9 +10,9 @@ def index():
     return "Hello, World!"
 
 
-@app.route("/InfoRegion")
-def region_info():
-    results = countryDAO.findByRegion("EASTERN EUROPE")
+@app.route("/InfoRegion/<region>")
+def region_info(region):
+    results = countryDAO.findByRegion(region)
     return jsonify(results)
 
 
