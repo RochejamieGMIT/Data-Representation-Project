@@ -77,9 +77,9 @@ class CountryDAO:
     def findByRegion(self,limit):
         
         #sql="select c.country,c.capital,r.region,r.literacy,r.phone from country c inner join regionInfo r on c.country = r.country where r.region = 'WESTERN EUROPE' limit 5"
-        values = (limit,)
+        #values = (limit,)
         cursor = self.getcursor()
-        sql="select c.country,c.capital,r.region,r.literacy,r.phone from country c inner join regionInfo r on c.country = r.country limit %s"
+        sql="select c.country,c.capital,r.region,r.literacy,r.phone from country c inner join regionInfo r on c.country = r.country"
         cursor.execute(sql)
         results = cursor.fetchall()
         returnArray = []
